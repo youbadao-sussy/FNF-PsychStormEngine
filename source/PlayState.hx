@@ -3495,12 +3495,19 @@ class PlayState extends MusicBeatState
 						value = 0;
 					case 'gf' | 'girlfriend' | '1':
 						value = 1;
+					case 'dad' | 'dad' | '2':
+						value = 0;
 				}
 
 				var time:Float = Std.parseFloat(value2);
 				if(Math.isNaN(time) || time <= 0) time = 0.6;
 
 				if(value != 0) {
+					boyfriend.playAnim('hey', true);
+					boyfriend.specialAnim = true;
+					boyfriend.heyTimer = time;
+				}
+				if(value != 1) {
 					if(dad.curCharacter.startsWith('gf')) { //Tutorial GF is actually Dad! The GF is an imposter!! ding ding ding ding ding ding ding, dindinding, end my suffering
 						dad.playAnim('cheer', true);
 						dad.specialAnim = true;
@@ -3516,10 +3523,10 @@ class PlayState extends MusicBeatState
 						heyTimer = time;
 					}
 				}
-				if(value != 1) {
-					boyfriend.playAnim('hey', true);
-					boyfriend.specialAnim = true;
-					boyfriend.heyTimer = time;
+				if(value != 2) {
+					dad.playAnim('hey', true);
+					dad.specialAnim = true;
+					dad.heyTimer = time;
 				}
 
 			case 'Set GF Speed':
