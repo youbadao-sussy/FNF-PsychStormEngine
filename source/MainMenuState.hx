@@ -26,13 +26,21 @@ using StringTools;
 class MainMenuState extends MusicBeatState
 {
 	//Devビルドの場合これをコメントアウトしてください。
-	public static var jpsychengineVersion:String = '3.0.3-ZERO';
+	#if debug
+	public static var jpsychengineVersion:String = '1.4(3.0.3-ZERO)';
+	public static var pseVersion:String = '1.0.0';
+	#else
+	public static var jpsychengineVersion:String = '1.4(3.0.3-ZERO)';
+	public static var pseVersion:String = '1.0.0';
+	#end
 	
 	//Devビルドではない場合これをアンコメントしてください。
 	/*#if debug
 	public static var jpsychengineVersion:String = '3.0.3-ZERO-debug';
+	public static var pseVersion:String = 'Beta';
 	#else
 	public static var jpsychengineVersion:String = '3.0.3-ZERO';
+	public static var pseVersion:String = 'Beta';
 	#end*/
 	//This is also used for Discord RPC
 
@@ -144,12 +152,15 @@ class MainMenuState extends MusicBeatState
 		}
 
 		FlxG.camera.follow(camFollowPos, null, 1);
-
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "JPsych Engine v" + jpsychengineVersion, 12);
+		#if debug
+			var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Storm Engine v" + pseVersion + "(Build num: 0000/debug)", 12);
+		#else
+			var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Storm Engine v" + pseVersion + "(Build num: 0000)", 12);
+		#end
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("HYZhengYuan-75W", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v0.2.8 ｜ Psych Engine v0.6.3", 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "JPsych Engine v" + jpsychengineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("HYZhengYuan-75W", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
