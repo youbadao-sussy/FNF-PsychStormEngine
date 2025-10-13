@@ -180,6 +180,7 @@ class Character extends FlxSprite
 				cameraPosition = json.camera_position;
 
 				healthIcon = json.healthicon;
+				vocalsFile = json.vocals_file ?? '';
 				singDuration = json.sing_duration;
 				flipX = !!json.flip_x;
 				if(json.no_antialiasing) {
@@ -189,8 +190,8 @@ class Character extends FlxSprite
 
 				if(json.healthbar_colors != null && json.healthbar_colors.length > 2)
 					healthColorArray = json.healthbar_colors;
-
-				vocalsFile = json.vocals_file ?? '';
+						
+				
 
 				antialiasing = !noAntialiasing;
 				if(!ClientPrefs.globalAntialiasing) antialiasing = false;
