@@ -2,5 +2,5 @@ Package;
 
 class Build 
 {
-	public static var number:Int = 1;
+	public static var number:Int = 10;
 }
