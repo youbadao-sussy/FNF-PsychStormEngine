@@ -81,7 +81,6 @@ class CharacterEditorState extends MusicBeatState
 	override function create()
 	{
 		//FlxG.sound.playMusic(Paths.music('breakfast'), 0.5);
-		FlxG.sound.music.stop();
 
 		camEditor = new FlxCamera();
 		camHUD = new FlxCamera();
@@ -184,8 +183,7 @@ class CharacterEditorState extends MusicBeatState
 		UI_characterbox = new FlxUITabMenu(null, tabs, true);
 		UI_characterbox.cameras = [camMenu];
 
-		//UI_characterbox.resize(350, 250);
-		UI_characterbox.resize(350, 280);
+		UI_characterbox.resize(350, 250);
 		UI_characterbox.x = UI_box.x - 100;
 		UI_characterbox.y = UI_box.y + UI_box.height;
 		UI_characterbox.scrollFactor.set();
@@ -338,14 +336,20 @@ class CharacterEditorState extends MusicBeatState
 			"animations": [
 				{
 					"loop": false,
-					"offsets": [0, 0],
+					"offsets": [
+						0,
+						0
+					],
 					"fps": 24,
 					"anim": "idle",
 					"indices": [],
 					"name": "Dad idle dance"
 				},
 				{
-					"offsets": [0, 0],
+					"offsets": [
+						0,
+						0
+					],
 					"indices": [],
 					"fps": 24,
 					"anim": "singLEFT",
@@ -353,7 +357,10 @@ class CharacterEditorState extends MusicBeatState
 					"name": "Dad Sing Note LEFT"
 				},
 				{
-					"offsets": [0, 0],
+					"offsets": [
+						0,
+						0
+					],
 					"indices": [],
 					"fps": 24,
 					"anim": "singDOWN",
@@ -361,7 +368,10 @@ class CharacterEditorState extends MusicBeatState
 					"name": "Dad Sing Note DOWN"
 				},
 				{
-					"offsets": [0, 0],
+					"offsets": [
+						0,
+						0
+					],
 					"indices": [],
 					"fps": 24,
 					"anim": "singUP",
@@ -369,7 +379,10 @@ class CharacterEditorState extends MusicBeatState
 					"name": "Dad Sing Note UP"
 				},
 				{
-					"offsets": [0, 0],
+					"offsets": [
+						0,
+						0
+					],
 					"indices": [],
 					"fps": 24,
 					"anim": "singRIGHT",
@@ -379,12 +392,21 @@ class CharacterEditorState extends MusicBeatState
 			],
 			"no_antialiasing": false,
 			"image": "characters/DADDY_DEAREST",
-			"position": [0, 0],
-			"vocals_file": null
+			"position": [
+				0,
+				0
+			],
 			"healthicon": "face",
 			"flip_x": false,
-			"healthbar_colors": [161, 161, 161],
-			"camera_position": [0, 0],
+			"healthbar_colors": [
+				161,
+				161,
+				161
+			],
+			"camera_position": [
+				0,
+				0
+			],
 			"sing_duration": 6.1,
 			"scale": 1
 		}';
@@ -472,7 +494,6 @@ class CharacterEditorState extends MusicBeatState
 
 	var imageInputText:FlxUIInputText;
 	var healthIconInputText:FlxUIInputText;
-	var vocalsInputText:FlxUIInputText;
 
 	var singDurationStepper:FlxUINumericStepper;
 	var scaleStepper:FlxUINumericStepper;
@@ -515,10 +536,7 @@ class CharacterEditorState extends MusicBeatState
 
 		healthIconInputText = new FlxUIInputText(15, imageInputText.y + 35, 75, leHealthIcon.getCharacter(), 8);
 
-		//singDurationStepper = new FlxUINumericStepper(15, healthIconInputText.y + 45, 0.1, 4, 0, 999, 1);
-		vocalsInputText = new FlxUIInputText(15, healthIconInputText.y + 35, 75, character.vocalsFile ?? '', 8);
-
-		singDurationStepper = new FlxUINumericStepper(15, vocalsInputText.y + 45, 0.1, 4, 0, 999, 1);
+		singDurationStepper = new FlxUINumericStepper(15, healthIconInputText.y + 45, 0.1, 4, 0, 999, 1);
 
 		scaleStepper = new FlxUINumericStepper(15, singDurationStepper.y + 40, 0.1, 1, 0.05, 10, 1);
 
@@ -560,7 +578,6 @@ class CharacterEditorState extends MusicBeatState
 
 		tab_group.add(new FlxText(15, imageInputText.y - 18, 0, 'イメージファイル名',10));
 		tab_group.add(new FlxText(15, healthIconInputText.y - 18, 0, '体力アイコン名',10));
-		tab_group.add(new FlxText(15, vocalsInputText.y - 18, 0, 'ボーカルファイルのキャラクター名:'));
 		tab_group.add(new FlxText(15, singDurationStepper.y - 18, 0, '歌うアニメーションの長さ',10));
 		tab_group.add(new FlxText(15, scaleStepper.y - 18, 0, '大きさ',10));
 		tab_group.add(new FlxText(positionXStepper.x, positionXStepper.y - 18, 0, 'キャラクター位置(X / Y)',10));
@@ -570,7 +587,6 @@ class CharacterEditorState extends MusicBeatState
 		tab_group.add(reloadImage);
 		tab_group.add(decideIconColor);
 		tab_group.add(healthIconInputText);
-		tab_group.add(vocalsInputText);
 		tab_group.add(singDurationStepper);
 		tab_group.add(scaleStepper);
 		tab_group.add(flipXCheckBox);
@@ -626,8 +642,7 @@ class CharacterEditorState extends MusicBeatState
 			}
 		});
 
-		//var addUpdateButton:FlxButton = new FlxButton(70, animationIndicesInputText.y + 30, "追加して更新", function() {
-		var addUpdateButton:FlxButton = new FlxButton(70, animationIndicesInputText.y + 60, "追加して更新", function() {
+		var addUpdateButton:FlxButton = new FlxButton(70, animationIndicesInputText.y + 30, "追加して更新", function() {
 			var indices:Array<Int> = [];
 			var indicesStr:Array<String> = animationIndicesInputText.text.trim().split(',');
 			if(indicesStr.length > 1) {
@@ -697,8 +712,7 @@ class CharacterEditorState extends MusicBeatState
 			trace('Added/Updated animation: ' + animationInputText.text);
 		});
 
-		//var removeButton:FlxButton = new FlxButton(180, animationIndicesInputText.y + 30, "削除", function() {
-		var removeButton:FlxButton = new FlxButton(180, animationIndicesInputText.y + 60, "削除", function() {
+		var removeButton:FlxButton = new FlxButton(180, animationIndicesInputText.y + 30, "削除", function() {
 			for (anim in char.animationsArray) {
 				if(animationInputText.text == anim.anim) {
 					var resetAnim:Bool = false;
@@ -753,10 +767,7 @@ class CharacterEditorState extends MusicBeatState
 				char.imageFile = imageInputText.text;
 			}
 		} else if(id == FlxUINumericStepper.CHANGE_EVENT && (sender is FlxUINumericStepper)) {
-			//if (sender == scaleStepper)
-			else if(sender == vocalsInputText)
-				character.vocalsFile = vocalsInputText.text;
-			else if(sender == imageInputText)
+			if (sender == scaleStepper)
 			{
 				reloadCharacterImage();
 				char.jsonScale = sender.value;
@@ -971,7 +982,6 @@ class CharacterEditorState extends MusicBeatState
 		if(UI_characterbox != null) {
 			imageInputText.text = char.imageFile;
 			healthIconInputText.text = char.healthIcon;
-			vocalsInputText.text = character.vocalsFile ?? '';
 			singDurationStepper.value = char.singDuration;
 			scaleStepper.value = char.jsonScale;
 			flipXCheckBox.checked = char.originalFlipX;
@@ -1088,7 +1098,7 @@ class CharacterEditorState extends MusicBeatState
 			textAnim.text = '';
 		}
 
-		var inputTexts:Array<FlxUIInputText> = [animationInputText, imageInputText, healthIconInputText, animationNameInputText, animationIndicesInputText, vocalsInputText];
+		var inputTexts:Array<FlxUIInputText> = [animationInputText, imageInputText, healthIconInputText, animationNameInputText, animationIndicesInputText];
 		for (i in 0...inputTexts.length) {
 			if(inputTexts[i].hasFocus) {
 				if(FlxG.keys.pressed.CONTROL && FlxG.keys.justPressed.V && Clipboard.text != null) { //Copy paste
@@ -1269,8 +1279,7 @@ class CharacterEditorState extends MusicBeatState
 	}
 
 	function saveCharacter() {
-		//var json = {
-		var json:Dynamic = {
+		var json = {
 			"animations": char.animationsArray,
 			"image": char.imageFile,
 			"scale": char.jsonScale,
@@ -1283,7 +1292,6 @@ class CharacterEditorState extends MusicBeatState
 			"flip_x": char.originalFlipX,
 			"no_antialiasing": char.noAntialiasing,
 			"healthbar_colors": char.healthColorArray
-			"vocals_file": char.vocalsFile,
 		};
 
 		var data:String = Json.stringify(json, "\t");
