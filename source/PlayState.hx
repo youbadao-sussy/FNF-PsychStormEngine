@@ -2446,7 +2446,7 @@ class PlayState extends MusicBeatState
 			//vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song));
 			{
 				var playerVocals = Paths.voices(PlayState.SONG.song, (boyfriend.vocalsFile == null || boyfriend.vocalsFile.length < 1) ? 'Player' : boyfriend.vocalsFile);
-				vocals.loadEmbedded(playerVocals ?? Paths.voices(PlayState.SONG.song));
+				vocals.loadEmbedded(playerVocals ? Paths.voices(PlayState.SONG.song));
 				
 				var oppVocals = Paths.voices(PlayState.SONG.song, (dad.vocalsFile == null || dad.vocalsFile.length < 1) ? 'Opponent' : dad.vocalsFile);
 				if(oppVocals != null) opponentVocals.loadEmbedded(oppVocals);
