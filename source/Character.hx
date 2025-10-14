@@ -180,7 +180,7 @@ class Character extends FlxSprite
 				cameraPosition = json.camera_position;
 
 				healthIcon = json.healthicon;
-				vocalsFile = json.vocals_file ?? '';
+				vocalsFile = json.vocals_file != null ? json.vocals_file : '';
 				singDuration = json.sing_duration;
 				flipX = !!json.flip_x;
 				if(json.no_antialiasing) {
