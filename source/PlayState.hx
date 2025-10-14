@@ -387,9 +387,9 @@ class PlayState extends MusicBeatState
 			keysPressed.push(false);
 		}
 
-		//if (FlxG.sound.music != null)
-		//	FlxG.sound.music.stop();
-		FlxG.sound.music?.stop();
+		if (FlxG.sound.music != null)
+			FlxG.sound.music.stop();
+		//FlxG.sound.music?.stop();
 
 		// Gameplay settings
 		healthGain = ClientPrefs.getGameplaySetting('healthgain', 1);
