@@ -1,4 +1,4 @@
-Package;
+package;
 
 class Build 
 {
