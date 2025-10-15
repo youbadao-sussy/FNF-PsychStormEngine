@@ -97,13 +97,13 @@ class FPS extends TextField
 			}
 			
 			//Devビルドの場合これをコメントアウトしてください。
-			text += "\nJPE v3.0.3-ZERO";
+			text += "\nPSE v1.0.0";
 
 			//Devビルドではない場合これをアンコメントしてください。
 			/*#if debug
-			text += "\nJPE v3.0.3-ZERO";
+			text += "\nPSE v1.0.0";
 			#else
-			text += "\nJPE v3.0.3";
+			text += "\nPSE v1.0.0";
 			#end*/
 
 			#end
