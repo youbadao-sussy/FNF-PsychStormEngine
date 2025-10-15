@@ -91,10 +91,10 @@ class FPS extends TextField
 			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
 			gigaMemory = Math.abs(FlxMath.roundDecimal((System.totalMemory / 1000000)/1000, 2));
 			if (memoryMegas < 1000){
-				text += "\nRAM: " + memoryMegas + ' MB / ${flixel.util.FlxStringUtil.formatBytes(maxMemoryMegas) GB';
+				text += "\nRAM: " + memoryMegas + ' MB / ${flixel.util.FlxStringUtil.formatBytes(maxMemoryMegas)} GB';
 			}
 			if (memoryMegas >= 1000){
-				text += "\nRAM: " + gigaMemory + ' GB / ${flixel.util.FlxStringUtil.formatBytes(maxMemoryMegas) GB';
+				text += "\nRAM: " + gigaMemory + ' GB / ${flixel.util.FlxStringUtil.formatBytes(maxMemoryMegas)} GB';
 			}
 			
 			
