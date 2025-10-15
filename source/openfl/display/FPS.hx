@@ -5,7 +5,6 @@ import openfl.events.Event;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import flixel.math.FlxMath;
-import flixel.FlxG;
 #if gl_stats
 import openfl.display._internal.stats.Context3DStats;
 import openfl.display._internal.stats.DrawCallContext;
@@ -37,7 +36,7 @@ class FPS extends TextField
 	@:noCompletion private var currentTime:Float;
 	@:noCompletion private var times:Array<Float>;
 
-	public function new(x:Float = 10, y:Float = 10, color:Int = 0x000000)
+	public function new(x:Float = 100, y:Float = 10, color:Int = 0x000000)
 	{
 		super();
 
@@ -85,17 +84,16 @@ class FPS extends TextField
 		{
 			text = "" + currentFPS + " FPS";
 			var memoryMegas:Float = 0;
-			public var maxMemoryMegas:Float;
 			var gigaMemory:Float = 0;
 			
 			#if openfl
 			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
 			gigaMemory = Math.abs(FlxMath.roundDecimal((System.totalMemory / 1000000)/1000, 2));
 			if (memoryMegas < 1000){
-				text += "\nRAM: " + memoryMegas + ' MB / ${flixel.util.FlxStringUtil.formatBytes(maxMemoryMegas)} GB';
+				text += "\nRAM: " + memoryMegas + "MB";
 			}
 			if (memoryMegas >= 1000){
-				text += "\nRAM: " + gigaMemory + ' GB / ${flixel.util.FlxStringUtil.formatBytes(maxMemoryMegas)} GB';
+				text += "\nRAM: " + gigaMemory + "GB";
 			}
 			
 			
@@ -123,9 +121,6 @@ class FPS extends TextField
 			text += "\n";
 		}
 		
-		if (memoryMegas > maxMemoryMegas)
-			maxMemoryMegas = memoryMegas;
-
 		cacheCount = currentCount;
 	}
 }
