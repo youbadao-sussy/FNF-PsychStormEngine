@@ -84,17 +84,19 @@ class FPS extends TextField
 		{
 			text = "" + currentFPS + " FPS";
 			var memoryMegas:Float = 0;
+			public var maxMemoryMegas:Float;
 			var gigaMemory:Float = 0;
 			
 			#if openfl
 			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
 			gigaMemory = Math.abs(FlxMath.roundDecimal((System.totalMemory / 1000000)/1000, 2));
 			if (memoryMegas < 1000){
-				text += "\nRAM: " + memoryMegas + " MB";
+				text += "\nRAM: " + memoryMegas + ' MB / ${flixel.util.FlxStringUtil.formatBytes(maxMemoryMegas) GB';
 			}
 			if (memoryMegas >= 1000){
-				text += "\nRAM: " + gigaMemory + " GB";
+				text += "\nRAM: " + gigaMemory + ' GB / ${flixel.util.FlxStringUtil.formatBytes(maxMemoryMegas) GB';
 			}
+			
 			
 			//Devビルドの場合これをコメントアウトしてください。
 			text += "\nPSE v1.0.0";
@@ -119,6 +121,9 @@ class FPS extends TextField
 
 			text += "\n";
 		}
+		
+		if (memoryMegas > maxMemoryMegas)
+			maxMemoryMegas = memoryMegas;
 
 		cacheCount = currentCount;
 	}
