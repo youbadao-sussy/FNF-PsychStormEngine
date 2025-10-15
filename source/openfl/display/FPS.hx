@@ -90,10 +90,10 @@ class FPS extends TextField
 			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
 			gigaMemory = Math.abs(FlxMath.roundDecimal((System.totalMemory / 1000000)/1000, 2));
 			if (memoryMegas < 1000){
-				text += "\nRAM: " + memoryMegas + "MB";
+				text += "\nRAM: " + memoryMegas + "mb";
 			}
 			if (memoryMegas >= 1000){
-				text += "\nRAM: " + gigaMemory + "GB";
+				text += "\nRAM: " + gigaMemory + "gb";
 			}
 			
 			
