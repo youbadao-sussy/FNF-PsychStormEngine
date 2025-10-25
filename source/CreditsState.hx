@@ -82,7 +82,7 @@ class CreditsState extends MusicBeatState
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			['Storm Psychics Crew and JPsych Engine Team'],
-            		['Youbadao',		    	'youba',		'Director, Composer, Coder',					'https://x.com/Youba_mint',    	                         		'F4A460'],
+            		['Youbadao',		    	'youba',		'Director, Composer, Coder',					'https://x.com/Youba_mint',    	                         		'00A968'],
             		['Warabimochi',		    	'warabi',		'Created of JPsych Engine Coder',					'null',    	                         		'F4A460'],
             		['KuroKamiZERO',		'KRKMZERO',		'Created of JPsych Engine(ver.ZERO)',					'https://kurokkamizeroportalsite.jimdofree.com/',	'555555'],
 			[''],
