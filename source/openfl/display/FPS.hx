@@ -82,12 +82,6 @@ class FPS extends TextField
 
 		if (currentCount != cacheCount /*&& visible*/)
 		{
-			text = "" + currentFPS + " FPS";
-			var memoryMegas:Float = 0;
-			var gigaMemory:Float = 0;
-			
-			#if openfl
-			
 			
 			//Devビルドの場合これをコメントアウトしてください。
 			text += "\nPSE v1.0.0";
@@ -99,6 +93,12 @@ class FPS extends TextField
 			text += "\nPSE v1.0.0";
 			#end*/
 
+			text = "" + currentFPS + " FPS";
+			var memoryMegas:Float = 0;
+			var gigaMemory:Float = 0;
+			
+			#if openfl
+			
 			
 			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
 			gigaMemory = Math.abs(FlxMath.roundDecimal((System.totalMemory / 1000000)/1000, 2));
