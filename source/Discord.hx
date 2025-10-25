@@ -17,7 +17,7 @@ class DiscordClient
 	{
 		trace("Discord Client starting...");
 		DiscordRpc.start({
-			clientID: "1007548300733456456",
+			clientID: "1431464719503593566",
 			onReady: onReady,
 			onError: onError,
 			onDisconnected: onDisconnected
@@ -45,7 +45,7 @@ class DiscordClient
 			details: "起動中",
 			state: null,
 			largeImageKey: 'icon',
-			largeImageText: "JPsych Engine - ZERO"
+			largeImageText: "Psych Storm Engine"
 		});
 	}
 
