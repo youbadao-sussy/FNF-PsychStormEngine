@@ -36,7 +36,7 @@ class FPS extends TextField
 	@:noCompletion private var currentTime:Float;
 	@:noCompletion private var times:Array<Float>;
 
-	public function new(x:Float = 10, y:Float = 10, color:Int = 0x000000)
+	public function new(x:Float = 20, y:Float = 20, color:Int = 0x000000)
 	{
 		super();
 
