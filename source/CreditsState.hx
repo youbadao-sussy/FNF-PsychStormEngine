@@ -81,9 +81,11 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
-			['JPsych Engine Team'],
-            		['Warabimochi',		    	'warabi',		'JPsych Engine制作者+JPE基盤',					'null',    	                         		'F4A460'],
-            		['KuroKamiZERO',		'KRKMZERO',		'JPsych Engine ver ZERO制作',					'https://kurokkamizeroportalsite.jimdofree.com/',	'555555'],
+			['Storm Psychics Crew and JPsych Engine Team'],
+            		['Youbadao',		    	'youba',		'Director, Composer, Coder',					'https://x.com/Youba_mint',    	                         		'F4A460'],
+            		['Warabimochi',		    	'warabi',		'Created of JPsych Engine Coder',					'null',    	                         		'F4A460'],
+            		['KuroKamiZERO',		'KRKMZERO',		'Created of JPsych Engine(ver.ZERO)',					'https://kurokkamizeroportalsite.jimdofree.com/',	'555555'],
+			[''],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',				'https://twitter.com/Shadow_Mario_',			'444444'],
 			['RiverOaken',			'river',		'Main Artist/Animator of Psych Engine',				'https://twitter.com/RiverOaken',			'B42F71'],
