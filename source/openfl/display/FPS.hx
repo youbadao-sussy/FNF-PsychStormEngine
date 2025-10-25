@@ -46,7 +46,7 @@ class FPS extends TextField
 		currentFPS = 0;
 		selectable = false;
 		mouseEnabled = false;
-		defaultTextFormat = new TextFormat("Mgen+ 2c bold", 14, color);
+		defaultTextFormat = new TextFormat("Mgen+ 2c bold", 10, color);
 		autoSize = LEFT;
 		multiline = true;
 		text = "FPS";
@@ -82,16 +82,6 @@ class FPS extends TextField
 
 		if (currentCount != cacheCount /*&& visible*/)
 		{
-			
-			//Devビルドの場合これをコメントアウトしてください。
-			text += "\nPSE v1.0.0";
-
-			//Devビルドではない場合これをアンコメントしてください。
-			/*#if debug
-			text += "\nPSE v1.0.0";
-			#else
-			text += "\nPSE v1.0.0";
-			#end*/
 
 			text = "" + currentFPS + " FPS";
 			var memoryMegas:Float = 0;
@@ -110,6 +100,16 @@ class FPS extends TextField
 			}
 			
 			
+			
+			//Devビルドの場合これをコメントアウトしてください。
+			text += "\nPSE v0.0.1";
+
+			//Devビルドではない場合これをアンコメントしてください。
+			/*#if debug
+			text += "\nPSE v0.0.1";
+			#else
+			text += "\nPSE v0.0.1";
+			#end*/
 
 			#end
 
