@@ -87,14 +87,6 @@ class FPS extends TextField
 			var gigaMemory:Float = 0;
 			
 			#if openfl
-			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
-			gigaMemory = Math.abs(FlxMath.roundDecimal((System.totalMemory / 1000000)/1000, 2));
-			if (memoryMegas < 1000){
-				text += "\nRAM: " + memoryMegas + "mb";
-			}
-			if (memoryMegas >= 1000){
-				text += "\nRAM: " + gigaMemory + "gb";
-			}
 			
 			
 			//Devビルドの場合これをコメントアウトしてください。
@@ -106,6 +98,18 @@ class FPS extends TextField
 			#else
 			text += "\nPSE v1.0.0";
 			#end*/
+
+			
+			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
+			gigaMemory = Math.abs(FlxMath.roundDecimal((System.totalMemory / 1000000)/1000, 2));
+			if (memoryMegas < 1000){
+				text += "\nRAM: " + memoryMegas + "mb";
+			}
+			if (memoryMegas >= 1000){
+				text += "\nRAM: " + gigaMemory + "gb";
+			}
+			
+			
 
 			#end
 
