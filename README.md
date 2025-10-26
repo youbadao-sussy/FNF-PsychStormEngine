@@ -11,10 +11,11 @@ _____________________________________
 
 _____________________________________
 ## クレジット:
-* Youbadao - Director,Programmer
-* 黒髪零 - Programmer
+* Youbadao - Director, Programmer
+* 黒髪零 - Programmer, JPsychEngine(JPE) Ver.ZERO Creator
 
 ### スペシャルサンクス!!!
+* わらびもちぃ - JPE Creator
 * Psych Engine Dev
 * Vs.OCstorms
 _____________________________________
