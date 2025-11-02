@@ -32,6 +32,7 @@ class PauseSubState extends MusicBeatSubstate
 	//var botplayText:FlxText;
 
 	public static var songName:String = '';
+	public static var composerText:String = null;
 
 	public function new(x:Float, y:Float)
 	{
@@ -84,8 +85,11 @@ class PauseSubState extends MusicBeatSubstate
 		levelInfo.updateHitbox();
 		add(levelInfo);
 		
-		var levelComposer:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
-		levelComposer.text = ChartingState.UI_songArtist;
+		var levelComposer:FlxText = new FlxText(20, 15 + 32, 0, "Artist:" + comTxt, 32);
+		//levelComposer.text = ChartingState.UI_songArtist;
+		if(PlayState.SONG.song == 'Bopeebo' ){
+			comTxt = 'Kawai Sprite';
+		}
 		levelComposer.scrollFactor.set();
 		levelComposer.setFormat(Paths.font("vcr.ttf"), 32);
 		levelComposer.updateHitbox();
