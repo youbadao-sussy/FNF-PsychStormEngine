@@ -85,7 +85,7 @@ class PauseSubState extends MusicBeatSubstate
 		add(levelInfo);
 		
 		var levelComposer:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
-		levelComposer.text = ChartingState._song.artist;
+		levelComposer.text = ChartingState.UI_songArtist;
 		levelComposer.scrollFactor.set();
 		levelComposer.setFormat(Paths.font("vcr.ttf"), 32);
 		levelComposer.updateHitbox();

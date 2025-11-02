@@ -224,7 +224,7 @@ class ChartingState extends MusicBeatState
 				speed: 1,
 				stage: 'stage',
 				validScore: false,
-				artist: 'Kawai Sprite'
+				//artist: 'Kawai Sprite'
 			};
 			addSection();
 			PlayState.SONG = _song;
@@ -462,8 +462,10 @@ class ChartingState extends MusicBeatState
 			saveEvents();
 		});
 		
+		/*
 		UI_songArtist = new FlxUIInputText(110, reloadSongJson.y + 30, 70, _song.artist, 8);
 		blockPressWhileTypingOn.push(UI_songArtist);
+		*/
 
 		var clear_events:FlxButton = new FlxButton(320, 310, 'イベント全消去', function()
 			{
@@ -611,9 +613,11 @@ class ChartingState extends MusicBeatState
 		tab_group_song.name = "Song";
 		tab_group_song.add(UI_songTitle);
 		
+		/*
 		var tab_group_songArtist = new FlxUI(null, UI_box);
 		tab_group_songArtist.name = "Artist";
 		tab_group_songArtist.add(UI_songArtist);
+		*/
 
 		tab_group_song.add(check_voices);
 		tab_group_song.add(clear_events);
@@ -1547,7 +1551,10 @@ class ChartingState extends MusicBeatState
 		}
 		Conductor.songPosition = FlxG.sound.music.time;
 		_song.song = UI_songTitle.text;
+		/*
 		_song.artist = UI_songArtist.text;
+		*/
+
 
 		strumLineUpdateY();
 		for (i in 0...8){
