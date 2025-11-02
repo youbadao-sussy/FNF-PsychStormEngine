@@ -223,7 +223,8 @@ class ChartingState extends MusicBeatState
 				gfVersion: 'gf',
 				speed: 1,
 				stage: 'stage',
-				validScore: false
+				validScore: false,
+				artist: 'Kawai Sprite'
 			};
 			addSection();
 			PlayState.SONG = _song;
@@ -396,6 +397,7 @@ class ChartingState extends MusicBeatState
 	var playSoundBf:FlxUICheckBox = null;
 	var playSoundDad:FlxUICheckBox = null;
 	var UI_songTitle:FlxUIInputText;
+	var UI_songArtist:FlxUIInputText;
 	var noteSkinInputText:FlxUIInputText;
 	var noteSplashesInputText:FlxUIInputText;
 	var stageDropDown:FlxUIDropDownMenuCustom;
@@ -459,6 +461,9 @@ class ChartingState extends MusicBeatState
 		{
 			saveEvents();
 		});
+		
+		UI_songArtist = new FlxUIInputText(110, reloadSongJson.y + 30, 70, _song.artist, 8);
+		blockPressWhileTypingOn.push(UI_songArtist);
 
 		var clear_events:FlxButton = new FlxButton(320, 310, 'イベント全消去', function()
 			{
@@ -1538,6 +1543,7 @@ class ChartingState extends MusicBeatState
 		}
 		Conductor.songPosition = FlxG.sound.music.time;
 		_song.song = UI_songTitle.text;
+		_song.artist = UI_songArtist.text;
 
 		strumLineUpdateY();
 		for (i in 0...8){
