@@ -32,7 +32,7 @@ class PauseSubState extends MusicBeatSubstate
 	//var botplayText:FlxText;
 
 	public static var songName:String = '';
-	public static var composerText:String = null;
+	public static var comText:String = null;
 
 	public function new(x:Float, y:Float)
 	{
