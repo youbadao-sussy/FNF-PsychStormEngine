@@ -2,6 +2,7 @@
 	"song": {
 		"player1": "bf",
 		"player2": "dad",
+		"artist": "Kawai Sprite",
 		"notes": [
 			{
 				"lengthInSteps": 16,

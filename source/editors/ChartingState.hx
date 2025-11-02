@@ -610,6 +610,10 @@ class ChartingState extends MusicBeatState
 		var tab_group_song = new FlxUI(null, UI_box);
 		tab_group_song.name = "Song";
 		tab_group_song.add(UI_songTitle);
+		
+		var tab_group_songArtist = new FlxUI(null, UI_box);
+		tab_group_songArtist.name = "Artist";
+		tab_group_songArtist.add(UI_songArtist);
 
 		tab_group_song.add(check_voices);
 		tab_group_song.add(clear_events);
