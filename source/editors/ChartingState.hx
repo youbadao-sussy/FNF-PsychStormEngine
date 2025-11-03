@@ -224,7 +224,8 @@ class ChartingState extends MusicBeatState
 				speed: 1,
 				stage: 'stage',
 				validScore: false,
-				artist: 'Kawai Sprite'
+				artist: 'Kawai Sprite',
+				charter: 'Unknown'
 			};
 			addSection();
 			PlayState.SONG = _song;
@@ -398,6 +399,7 @@ class ChartingState extends MusicBeatState
 	var playSoundDad:FlxUICheckBox = null;
 	var UI_songTitle:FlxUIInputText;
 	var artistInputText:FlxUIInputText;
+	var charterInputText:FlxUIInputText;
 	var noteSkinInputText:FlxUIInputText;
 	var noteSplashesInputText:FlxUIInputText;
 	var stageDropDown:FlxUIDropDownMenuCustom;
@@ -409,6 +411,9 @@ class ChartingState extends MusicBeatState
 
 		artistInputText = new FlxUIInputText(110, 68, 70, _song.artist, 8);
 		blockPressWhileTypingOn.push(artistInputText);
+
+		charterInputText = new FlxUIInputText(110, 98, 70, _song.charter, 8);
+		blockPressWhileTypingOn.push(charterInputText);
 
 		var check_voices = new FlxUICheckBox(10, 25, null, null, "ボイスありの譜面", 100);
 		check_voices.checked = _song.needsVoices;
@@ -633,6 +638,7 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(noteSkinInputText);
 		tab_group_song.add(noteSplashesInputText);
 		tab_group_song.add(artistInputText);
+		tab_group_song.add(charterInputText);
 		tab_group_song.add(new FlxText(stepperBPM.x, stepperBPM.y - 15, 0, '曲のBPM'));
 		tab_group_song.add(new FlxText(stepperSpeed.x, stepperSpeed.y - 15, 0, '譜面の速度'));
 		tab_group_song.add(new FlxText(player2DropDown.x, player2DropDown.y - 15, 0, '相手'));
@@ -642,6 +648,7 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(new FlxText(noteSkinInputText.x, noteSkinInputText.y - 15, 0, 'ノーツのテクスチャ'));
 		tab_group_song.add(new FlxText(noteSplashesInputText.x, noteSplashesInputText.y - 15, 0, 'ノーツスプラッシュのテクスチャ'));
 		tab_group_song.add(new FlxText(artistInputText.x, artistInputText.y - 15, 0, '作曲者:'));
+		tab_group_song.add(new FlxText(charterInputText.x, charterInputText.y - 15, 0, '譜面制作者:'));
 		tab_group_song.add(player2DropDown);
 		tab_group_song.add(gfVersionDropDown);
 		tab_group_song.add(player1DropDown);
@@ -1553,6 +1560,7 @@ class ChartingState extends MusicBeatState
 		Conductor.songPosition = FlxG.sound.music.time;
 		_song.song = UI_songTitle.text;
 		_song.artist = artistInputText.text;
+		_song.charter = charterInputText.text;
 
 
 		strumLineUpdateY();

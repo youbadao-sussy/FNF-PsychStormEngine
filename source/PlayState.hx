@@ -81,6 +81,7 @@ class PlayState extends MusicBeatState
 {
 
 	public static var songArtist:String = '';
+	public static var songCharter:String = '';
 
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
@@ -472,6 +473,9 @@ class PlayState extends MusicBeatState
 		songArtist = SONG.artist;
 		if (songArtist == null) songArtist == 'Unknown';
 		trace(songArtist);
+		songCharter = SONG.charter;
+		if (songCharter == null) songCharter == 'Unknown';
+		trace(songCharter);
 
 		var stageData:StageFile = StageData.getStageFile(curStage);
 		if(stageData == null) { //Stage couldn't be found, create a dummy stage for preventing a crash

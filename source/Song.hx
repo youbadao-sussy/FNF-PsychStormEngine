@@ -31,6 +31,7 @@ typedef SwagSong =
 	var validScore:Bool;
 
 	var artist:String;
+	var charter:String;
 }
 
 class Song
