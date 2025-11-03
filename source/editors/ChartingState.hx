@@ -407,7 +407,7 @@ class ChartingState extends MusicBeatState
 		UI_songTitle = new FlxUIInputText(10, 10, 70, _song.song, 8);
 		blockPressWhileTypingOn.push(UI_songTitle);
 
-		artistInputText = new FlxUIInputText(110, reloadSongJson.y + 30, 70, _song.artist, 8);
+		artistInputText = new FlxUIInputText(110, 68, 70, _song.artist, 8);
 		blockPressWhileTypingOn.push(artistInputText);
 
 		var check_voices = new FlxUICheckBox(10, 25, null, null, "ボイスありの譜面", 100);
