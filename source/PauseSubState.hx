@@ -80,37 +80,37 @@ class PauseSubState extends MusicBeatSubstate
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, PlayState.SONG.song, 32);
 		levelInfo.scrollFactor.set();
-		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
+		levelInfo.setFormat(Paths.font("vcr1.ttf"), 32);
 		levelInfo.updateHitbox();
 		add(levelInfo);
 		
 		var levelComposer:FlxText = new FlxText(20, 15 + 32, 0, "Artist: " + PlayState.SONG.artist, 32);
 		levelComposer.scrollFactor.set();
-		levelComposer.setFormat(Paths.font("vcr.ttf"), 32);
+		levelComposer.setFormat(Paths.font("vcr1.ttf"), 32);
 		levelComposer.updateHitbox();
 		add(levelComposer);
 
 		var levelCharter:FlxText = new FlxText(20, 15 + 64, 0, "Charter: " + PlayState.SONG.charter, 32);
 		levelCharter.scrollFactor.set();
-		levelCharter.setFormat(Paths.font("vcr.ttf"), 32);
+		levelCharter.setFormat(Paths.font("vcr1.ttf"), 32);
 		levelCharter.updateHitbox();
 		add(levelCharter);
 
 		var levelDifficulty:FlxText = new FlxText(20, 15 + 96, 0, CoolUtil.difficultyString(), 32);
 		levelDifficulty.scrollFactor.set();
-		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
+		levelDifficulty.setFormat(Paths.font('vcr1.ttf'), 32);
 		levelDifficulty.updateHitbox();
 		add(levelDifficulty);
 
 		var blueballedTxt:FlxText = new FlxText(20, 15 + 128, "Blueballed: " + PlayState.deathCounter, 32);
 		blueballedTxt.scrollFactor.set();
-		blueballedTxt.setFormat(Paths.font('vcr.ttf'), 32);
+		blueballedTxt.setFormat(Paths.font('vcr1.ttf'), 32);
 		blueballedTxt.updateHitbox();
 		add(blueballedTxt);
 
 		practiceText = new FlxText(20, 15 + 160, 0, "PRACTICE MODE", 32);
 		practiceText.scrollFactor.set();
-		practiceText.setFormat(Paths.font('vcr.ttf'), 32);
+		practiceText.setFormat(Paths.font('vcr1.ttf'), 32);
 		practiceText.x = FlxG.width - (practiceText.width + 20);
 		practiceText.updateHitbox();
 		practiceText.visible = PlayState.instance.practiceMode;
@@ -118,7 +118,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		var chartingText:FlxText = new FlxText(20, 15 + 160, 0, "CHARTING MODE", 32);
 		chartingText.scrollFactor.set();
-		chartingText.setFormat(Paths.font('vcr.ttf'), 32);
+		chartingText.setFormat(Paths.font('vcr1.ttf'), 32);
 		chartingText.x = FlxG.width - (chartingText.width + 20);
 		chartingText.y = FlxG.height - (chartingText.height + 20);
 		chartingText.updateHitbox();
