@@ -78,14 +78,14 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
+		var levelInfo:FlxText = new FlxText(20, 15, 0, PlayState.SONG.song, 32);
 		levelInfo.text += PlayState.SONG.song;
 		levelInfo.scrollFactor.set();
 		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
 		levelInfo.updateHitbox();
 		add(levelInfo);
 		
-		var levelComposer:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
+		var levelComposer:FlxText = new FlxText(20, 15 + 32, 0, "Artist: " + comTxt, 32);
 		levelComposer.text += "Artist: " + comTxt;
 		if(PlayState.SONG.song == 'Bopeebo' ) comTxt = 'Kawai Sprite';
 		if(PlayState.SONG.song == 'Fresh') comTxt = 'Kawai Sprite';
@@ -96,15 +96,13 @@ class PauseSubState extends MusicBeatSubstate
 		levelComposer.updateHitbox();
 		add(levelComposer);
 
-		var levelDifficulty:FlxText = new FlxText(20, 15 + 64, 0, "", 32);
-		levelDifficulty.text += CoolUtil.difficultyString();
+		var levelDifficulty:FlxText = new FlxText(20, 15 + 64, 0, CoolUtil.difficultyString(), 32);
 		levelDifficulty.scrollFactor.set();
 		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
 		levelDifficulty.updateHitbox();
 		add(levelDifficulty);
 
-		var blueballedTxt:FlxText = new FlxText(20, 15 + 96, "", 32);
-		blueballedTxt.text = "Blueballed: " + PlayState.deathCounter;
+		var blueballedTxt:FlxText = new FlxText(20, 15 + 96, "Blueballed: " + PlayState.deathCounter, 32);
 		blueballedTxt.scrollFactor.set();
 		blueballedTxt.setFormat(Paths.font('vcr.ttf'), 32);
 		blueballedTxt.updateHitbox();
