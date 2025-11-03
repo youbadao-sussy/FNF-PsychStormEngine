@@ -79,6 +79,9 @@ using StringTools;
 
 class PlayState extends MusicBeatState
 {
+
+	public static var songArtist:String = '';
+
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
@@ -466,6 +469,9 @@ class PlayState extends MusicBeatState
 			}
 		}
 		SONG.stage = curStage;
+		songArtist = SONG.composer;
+		if (songArtist == null) songArtist == 'Unknown';
+		trace(songArtist);
 
 		var stageData:StageFile = StageData.getStageFile(curStage);
 		if(stageData == null) { //Stage couldn't be found, create a dummy stage for preventing a crash
