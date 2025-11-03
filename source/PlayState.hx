@@ -469,7 +469,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 		SONG.stage = curStage;
-		songArtist = SONG.composer;
+		songArtist = SONG.artist;
 		if (songArtist == null) songArtist == 'Unknown';
 		trace(songArtist);
 

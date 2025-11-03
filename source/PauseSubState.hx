@@ -85,7 +85,7 @@ class PauseSubState extends MusicBeatSubstate
 		levelInfo.updateHitbox();
 		add(levelInfo);
 		
-		var levelComposer:FlxText = new FlxText(20, 15 + 32, 0, "Artist: " + PlayState.SONG.composer, 32);
+		var levelComposer:FlxText = new FlxText(20, 15 + 32, 0, "Artist: " + PlayState.SONG.artist, 32);
 		//levelComposer.text += "Artist: " + comTxt;
 		/*
 		if(PlayState.SONG.song == 'Bopeebo' ) comTxt = 'Kawai Sprite';
