@@ -224,7 +224,7 @@ class ChartingState extends MusicBeatState
 				speed: 1,
 				stage: 'stage',
 				validScore: false,
-				//artist: 'Kawai Sprite'
+				artist: 'Kawai Sprite'
 			};
 			addSection();
 			PlayState.SONG = _song;
@@ -397,7 +397,7 @@ class ChartingState extends MusicBeatState
 	var playSoundBf:FlxUICheckBox = null;
 	var playSoundDad:FlxUICheckBox = null;
 	var UI_songTitle:FlxUIInputText;
-	var UI_songArtist:FlxUIInputText;
+	var artistInputText:FlxUIInputText;
 	var noteSkinInputText:FlxUIInputText;
 	var noteSplashesInputText:FlxUIInputText;
 	var stageDropDown:FlxUIDropDownMenuCustom;
@@ -406,6 +406,9 @@ class ChartingState extends MusicBeatState
 	{
 		UI_songTitle = new FlxUIInputText(10, 10, 70, _song.song, 8);
 		blockPressWhileTypingOn.push(UI_songTitle);
+
+		artistInputText = new FlxUIInputText(stageDropDown.x, gfVersionDropDown.y, 119, _song.artist, 8);
+		blockPressWhileTypingOn.push(UI_songArtist);
 
 		var check_voices = new FlxUICheckBox(10, 25, null, null, "ボイスありの譜面", 100);
 		check_voices.checked = _song.needsVoices;
@@ -462,10 +465,6 @@ class ChartingState extends MusicBeatState
 			saveEvents();
 		});
 		
-		/*
-		UI_songArtist = new FlxUIInputText(110, reloadSongJson.y + 30, 70, _song.artist, 8);
-		blockPressWhileTypingOn.push(UI_songArtist);
-		*/
 
 		var clear_events:FlxButton = new FlxButton(320, 310, 'イベント全消去', function()
 			{
@@ -633,6 +632,7 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(reloadNotesButton);
 		tab_group_song.add(noteSkinInputText);
 		tab_group_song.add(noteSplashesInputText);
+		tab_group_song.add(artistInputText);
 		tab_group_song.add(new FlxText(stepperBPM.x, stepperBPM.y - 15, 0, '曲のBPM'));
 		tab_group_song.add(new FlxText(stepperSpeed.x, stepperSpeed.y - 15, 0, '譜面の速度'));
 		tab_group_song.add(new FlxText(player2DropDown.x, player2DropDown.y - 15, 0, '相手'));
@@ -641,6 +641,7 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(new FlxText(stageDropDown.x, stageDropDown.y - 15, 0, 'ステージ'));
 		tab_group_song.add(new FlxText(noteSkinInputText.x, noteSkinInputText.y - 15, 0, 'ノーツのテクスチャ'));
 		tab_group_song.add(new FlxText(noteSplashesInputText.x, noteSplashesInputText.y - 15, 0, 'ノーツスプラッシュのテクスチャ'));
+		tab_group_song.add(new FlxText(artistInputText.x, artistInputText.y - 15, 0, '作曲者:'));
 		tab_group_song.add(player2DropDown);
 		tab_group_song.add(gfVersionDropDown);
 		tab_group_song.add(player1DropDown);
@@ -1551,9 +1552,7 @@ class ChartingState extends MusicBeatState
 		}
 		Conductor.songPosition = FlxG.sound.music.time;
 		_song.song = UI_songTitle.text;
-		/*
-		_song.artist = UI_songArtist.text;
-		*/
+		_song.artist = artistInputText.text;
 
 
 		strumLineUpdateY();
