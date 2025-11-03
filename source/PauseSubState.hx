@@ -79,14 +79,14 @@ class PauseSubState extends MusicBeatSubstate
 		add(bg);
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, PlayState.SONG.song, 32);
-		levelInfo.text += PlayState.SONG.song;
+		//levelInfo.text += PlayState.SONG.song;
 		levelInfo.scrollFactor.set();
 		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
 		levelInfo.updateHitbox();
 		add(levelInfo);
 		
 		var levelComposer:FlxText = new FlxText(20, 15 + 32, 0, "Artist: " + comTxt, 32);
-		levelComposer.text += "Artist: " + comTxt;
+		//levelComposer.text += "Artist: " + comTxt;
 		if(PlayState.SONG.song == 'Bopeebo' ) comTxt = 'Kawai Sprite';
 		if(PlayState.SONG.song == 'Fresh') comTxt = 'Kawai Sprite';
 		if(PlayState.SONG.song == 'Dad Battle' ) comTxt = 'Kawai Sprite';
