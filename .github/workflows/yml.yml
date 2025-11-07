@@ -17,7 +17,8 @@ jobs:
           haxe-version: 4.2.5
 
       - name: Build Haxe project with build number
-        run: haxe build.hxml -D build_number=${{ github.run_number }}
+        run: build_number=${{ github.run_number }} # haxe build.hxml -D build_number=${{ github.run_number }}
+
 
       - name: Restore Cache
         uses: actions/cache@main
@@ -63,5 +64,6 @@ jobs:
             export/release/windows/obj/
           restore-keys: |
             cache-build-windows
+
 
 
