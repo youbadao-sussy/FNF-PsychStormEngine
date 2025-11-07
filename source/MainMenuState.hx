@@ -153,10 +153,11 @@ class MainMenuState extends MusicBeatState
 		}
 
 		FlxG.camera.follow(camFollowPos, null, 1);
+		BuildInfo.init();
 		#if debug
-			var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Storm Engine v" + pseVersion + "(Build num: " + Build.number + "/debug)", 12);
+			var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Storm Engine v" + pseVersion + "(Build num: " + BuildInfo.BUILD_NUMBER + "/debug)", 12);
 		#else
-			var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Storm Engine v" + pseVersion + "(Build num: " + Build.number + ")", 12);
+			var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Storm Engine v" + pseVersion + "(Build num: " + BuildInfo.BUILD_NUMBER + ")", 12);
 		#end
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("HYZhengYuan-75W", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
