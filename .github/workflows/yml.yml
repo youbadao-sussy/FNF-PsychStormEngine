@@ -16,6 +16,9 @@ jobs:
         with:
           haxe-version: 4.2.5
 
+      - name: Build Number
+        run: haxe build.hxml -d build_number=${{ github.run_number }}
+
       - name: Restore Cache
         uses: actions/cache@main
         with:
@@ -47,7 +50,7 @@ jobs:
       - name: Publish Artifact
         uses: actions/upload-artifact@v4.3.4
         with:
-          name: windowsBuild
+          name: PSE For Win
           path: export/release/windows/bin
 
       - name: Uploading new cache
@@ -60,3 +63,4 @@ jobs:
             export/release/windows/obj/
           restore-keys: |
             cache-build-windows
+
