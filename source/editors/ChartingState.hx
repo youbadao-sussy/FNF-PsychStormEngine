@@ -406,16 +406,19 @@ class ChartingState extends MusicBeatState
 	var sliderRate:FlxUISlider;
 	function addSongUI():Void
 	{
-		UI_songTitle = new FlxUIInputText(10, 10, 70, _song.song, 8);
+		var objX = 10;
+		var objY = 10;
+
+		UI_songTitle = new FlxUIInputText(objX, objY, 70, _song.song, 8);
 		blockPressWhileTypingOn.push(UI_songTitle);
 
-		artistInputText = new FlxUIInputText(110, 68, 70, _song.artist, 8);
+		artistInputText = new FlxUIInputText(objX + 100, objY + 58, 70, _song.artist, 8);
 		blockPressWhileTypingOn.push(artistInputText);
 
-		charterInputText = new FlxUIInputText(110, 98, 70, _song.charter, 8);
+		charterInputText = new FlxUIInputText(objX + 100, objY + 88, 70, _song.charter, 8);
 		blockPressWhileTypingOn.push(charterInputText);
 
-		var check_voices = new FlxUICheckBox(10, 25, null, null, "ボイスありの譜面", 100);
+		var check_voices = new FlxUICheckBox(objX, objY + 15, null, null, "ボイスありの譜面", 100);
 		check_voices.checked = _song.needsVoices;
 		// _song.needsVoices = check_voices.checked;
 		check_voices.callback = function()
@@ -424,30 +427,32 @@ class ChartingState extends MusicBeatState
 			//trace('CHECKED!');
 		};
 
-		var saveButton:FlxButton = new FlxButton(110, 8, "譜面を保存", function()
+		//var saveButton:FlxButton = new FlxButton(110, 8, "譜面を保存", function()
+		var saveButton:FlxButton = new FlxButton(objX + 100, 8, "譜面を保存", function()
 		{
 			saveLevel();
 		});
 
-		var reloadSong:FlxButton = new FlxButton(saveButton.x + 90, saveButton.y, "曲リロード", function()
+		//var reloadSong:FlxButton = new FlxButton(saveButton.x + 90, saveButton.y, "曲リロード", function()
+		var reloadSong:FlxButton = new FlxButton(objX + 190, saveButton.y, "曲リロード", function()
 		{
 			currentSongName = Paths.formatToSongPath(UI_songTitle.text);
 			loadSong();
 			updateWaveform();
 		});
 
-		var reloadSongJson:FlxButton = new FlxButton(reloadSong.x, saveButton.y + 30, "譜面リロード", function()
+		var reloadSongJson:FlxButton = new FlxButton(objX + 190, saveButton.y + 30, "譜面リロード", function()
 		{
 			openSubState(new Prompt('未保存のデータが全て失われます。\n\n実行しますか？', 0, function(){loadJson(_song.song.toLowerCase()); }, null,ignoreWarnings));
 		});
 
-		var loadAutosaveBtn:FlxButton = new FlxButton(reloadSongJson.x, reloadSongJson.y + 30, '自動保存を読み込む', function()
+		var loadAutosaveBtn:FlxButton = new FlxButton(objX + 190, reloadSongJson.y + 30, '自動保存を読み込む', function()
 		{
 			PlayState.SONG = Song.parseJSONshit(FlxG.save.data.autosave);
 			MusicBeatState.resetState();
 		});
 
-		var loadEventJson:FlxButton = new FlxButton(loadAutosaveBtn.x, loadAutosaveBtn.y + 30, 'イベントを読み込む', function()
+		var loadEventJson:FlxButton = new FlxButton(objX + 190, loadAutosaveBtn.y + 30, 'イベントを読み込む', function()
 		{
 
 			var songName:String = Paths.formatToSongPath(_song.song);
@@ -465,20 +470,21 @@ class ChartingState extends MusicBeatState
 			}
 		});
 
-		var saveEvents:FlxButton = new FlxButton(110, reloadSongJson.y, 'イベントを保存する', function ()
+		//var saveEvents:FlxButton = new FlxButton(110, reloadSongJson.y, 'イベントを保存する', function ()
+		var saveEvents:FlxButton = new FlxButton(objX + 100, reloadSongJson.y, 'イベントを保存する', function ()
 		{
 			saveEvents();
 		});
 		
 
-		var clear_events:FlxButton = new FlxButton(320, 310, 'イベント全消去', function()
+		var clear_events:FlxButton = new FlxButton(objX + 130, objY + 35, 'イベント全消去', function()
 			{
 				openSubState(new Prompt('これを実行すると、全てのイベントが削除されます。\n\n実行しますか？', 0, clearEvents, null,ignoreWarnings));
 			});
 		clear_events.color = FlxColor.RED;
 		clear_events.label.color = FlxColor.WHITE;
 
-		var clear_notes:FlxButton = new FlxButton(320, clear_events.y + 30, 'ノーツ全消去', function()
+		var clear_notes:FlxButton = new FlxButton(objX + 130, objY + 75, 'ノーツ全消去', function()
 			{
 				openSubState(new Prompt('これを実行すると、全てのノーツが削除されます。\n\n実行しますか？', 0, function(){for (sec in 0..._song.notes.length) {
 					_song.notes[sec].sectionNotes = [];
@@ -499,6 +505,35 @@ class ChartingState extends MusicBeatState
 		stepperSpeed.value = _song.speed;
 		stepperSpeed.name = 'song_speed';
 		blockPressWhileTypingOnStepper.push(stepperSpeed);
+
+		tab_group_song.add(check_voices);
+		tab_group_song.add(clear_events);
+		tab_group_song.add(clear_notes);
+		tab_group_song.add(saveButton);
+		tab_group_song.add(saveEvents);
+		tab_group_song.add(reloadSong);
+		tab_group_song.add(reloadSongJson);
+		tab_group_song.add(loadAutosaveBtn);
+		tab_group_song.add(loadEventJson);
+		tab_group_song.add(stepperBPM);
+		tab_group_song.add(stepperSpeed);
+		// tab_group_song.add(reloadNotesButton);
+		// tab_group_song.add(noteSkinInputText);
+		// tab_group_song.add(noteSplashesInputText);
+		tab_group_song.add(artistInputText);
+		tab_group_song.add(charterInputText);
+		tab_group_song.add(new FlxText(stepperBPM.x, stepperBPM.y - 15, 0, '曲のBPM'));
+		tab_group_song.add(new FlxText(stepperSpeed.x, stepperSpeed.y - 15, 0, '譜面の速度'));
+		// tab_group_song.add(new FlxText(player2DropDown.x, player2DropDown.y - 15, 0, '相手'));
+		// tab_group_song.add(new FlxText(gfVersionDropDown.x, gfVersionDropDown.y - 15, 0, '真ん中'));
+		// tab_group_song.add(new FlxText(player1DropDown.x, player1DropDown.y - 15, 0, 'プレイヤー'));
+		// tab_group_song.add(new FlxText(stageDropDown.x, stageDropDown.y - 15, 0, 'ステージ'));
+		// tab_group_song.add(new FlxText(noteSkinInputText.x, noteSkinInputText.y - 15, 0, 'ノーツのテクスチャ'));
+		// tab_group_song.add(new FlxText(noteSplashesInputText.x, noteSplashesInputText.y - 15, 0, 'ノーツスプラッシュのテクスチャ'));
+		tab_group_song.add(new FlxText(artistInputText.x, artistInputText.y - 15, 0, '作曲者:'));
+		tab_group_song.add(new FlxText(charterInputText.x, charterInputText.y - 15, 0, '譜面制作者:'));
+
+		objY += 35;
 		#if MODS_ALLOWED
 		var directories:Array<String> = [Paths.mods('characters/'), Paths.mods(Paths.currentModDirectory + '/characters/'), Paths.getPreloadPath('characters/')];
 		for(mod in Paths.getGlobalMods())
@@ -531,7 +566,10 @@ class ChartingState extends MusicBeatState
 		}
 		#end
 
-		var player1DropDown = new FlxUIDropDownMenuCustom(10, stepperSpeed.y + 45, FlxUIDropDownMenuCustom.makeStrIdLabelArray(characters, true), function(character:String)
+
+
+		//objY = 45
+		var player1DropDown = new FlxUIDropDownMenuCustom(objX, objY, FlxUIDropDownMenuCustom.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.player1 = characters[Std.parseInt(character)];
 			updateHeads();
@@ -539,7 +577,7 @@ class ChartingState extends MusicBeatState
 		player1DropDown.selectedLabel = _song.player1;
 		blockPressWhileScrolling.push(player1DropDown);
 
-		var gfVersionDropDown = new FlxUIDropDownMenuCustom(player1DropDown.x, player1DropDown.y + 40, FlxUIDropDownMenuCustom.makeStrIdLabelArray(characters, true), function(character:String)
+		var gfVersionDropDown = new FlxUIDropDownMenuCustom(objX, objY + 40, FlxUIDropDownMenuCustom.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.gfVersion = characters[Std.parseInt(character)];
 			updateHeads();
@@ -547,7 +585,7 @@ class ChartingState extends MusicBeatState
 		gfVersionDropDown.selectedLabel = _song.gfVersion;
 		blockPressWhileScrolling.push(gfVersionDropDown);
 
-		var player2DropDown = new FlxUIDropDownMenuCustom(player1DropDown.x, gfVersionDropDown.y + 40, FlxUIDropDownMenuCustom.makeStrIdLabelArray(characters, true), function(character:String)
+		var player2DropDown = new FlxUIDropDownMenuCustom(objX, objY + 80, FlxUIDropDownMenuCustom.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.player2 = characters[Std.parseInt(character)];
 			updateHeads();
@@ -593,7 +631,7 @@ class ChartingState extends MusicBeatState
 
 		if(stages.length < 1) stages.push('stage');
 
-		stageDropDown = new FlxUIDropDownMenuCustom(player1DropDown.x + 140, player1DropDown.y, FlxUIDropDownMenuCustom.makeStrIdLabelArray(stages, true), function(character:String)
+		stageDropDown = new FlxUIDropDownMenuCustom(objX + 130, objY, FlxUIDropDownMenuCustom.makeStrIdLabelArray(stages, true), function(character:String)
 		{
 			_song.stage = stages[Std.parseInt(character)];
 		});
@@ -602,13 +640,13 @@ class ChartingState extends MusicBeatState
 
 		var skin = PlayState.SONG.arrowSkin;
 		if(skin == null) skin = '';
-		noteSkinInputText = new FlxUIInputText(player2DropDown.x, player2DropDown.y + 50, 150, skin, 8);
+		noteSkinInputText = new FlxUIInputText(objX, objY + 130, 150, skin, 8);
 		blockPressWhileTypingOn.push(noteSkinInputText);
 
-		noteSplashesInputText = new FlxUIInputText(noteSkinInputText.x, noteSkinInputText.y + 35, 150, _song.splashSkin, 8);
+		noteSplashesInputText = new FlxUIInputText(objX, objY + 165, 150, _song.splashSkin, 8);
 		blockPressWhileTypingOn.push(noteSplashesInputText);
 
-		var reloadNotesButton:FlxButton = new FlxButton(noteSplashesInputText.x + 5, noteSplashesInputText.y + 20, 'ノーツ変更', function() {
+		var reloadNotesButton:FlxButton = new FlxButton(objX + 5, noteSplashesInputText.y + 20, 'ノーツ変更', function() {
 			_song.arrowSkin = noteSkinInputText.text;
 			updateGrid();
 		});
@@ -623,32 +661,32 @@ class ChartingState extends MusicBeatState
 		tab_group_songArtist.add(UI_songArtist);
 		*/
 
-		tab_group_song.add(check_voices);
-		tab_group_song.add(clear_events);
-		tab_group_song.add(clear_notes);
-		tab_group_song.add(saveButton);
-		tab_group_song.add(saveEvents);
-		tab_group_song.add(reloadSong);
-		tab_group_song.add(reloadSongJson);
-		tab_group_song.add(loadAutosaveBtn);
-		tab_group_song.add(loadEventJson);
-		tab_group_song.add(stepperBPM);
-		tab_group_song.add(stepperSpeed);
+		// tab_group_song.add(check_voices);
+		// tab_group_song.add(clear_events);
+		// tab_group_song.add(clear_notes);
+		// tab_group_song.add(saveButton);
+		// tab_group_song.add(saveEvents);
+		// tab_group_song.add(reloadSong);
+		// tab_group_song.add(reloadSongJson);
+		// tab_group_song.add(loadAutosaveBtn);
+		// tab_group_song.add(loadEventJson);
+		// tab_group_song.add(stepperBPM);
+		// tab_group_song.add(stepperSpeed);
 		tab_group_song.add(reloadNotesButton);
 		tab_group_song.add(noteSkinInputText);
 		tab_group_song.add(noteSplashesInputText);
-		tab_group_song.add(artistInputText);
-		tab_group_song.add(charterInputText);
-		tab_group_song.add(new FlxText(stepperBPM.x, stepperBPM.y - 15, 0, '曲のBPM'));
-		tab_group_song.add(new FlxText(stepperSpeed.x, stepperSpeed.y - 15, 0, '譜面の速度'));
-		tab_group_song.add(new FlxText(player2DropDown.x, player2DropDown.y - 15, 0, '相手'));
-		tab_group_song.add(new FlxText(gfVersionDropDown.x, gfVersionDropDown.y - 15, 0, '真ん中'));
-		tab_group_song.add(new FlxText(player1DropDown.x, player1DropDown.y - 15, 0, 'プレイヤー'));
-		tab_group_song.add(new FlxText(stageDropDown.x, stageDropDown.y - 15, 0, 'ステージ'));
-		tab_group_song.add(new FlxText(noteSkinInputText.x, noteSkinInputText.y - 15, 0, 'ノーツのテクスチャ'));
-		tab_group_song.add(new FlxText(noteSplashesInputText.x, noteSplashesInputText.y - 15, 0, 'ノーツスプラッシュのテクスチャ'));
-		tab_group_song.add(new FlxText(artistInputText.x, artistInputText.y - 15, 0, '作曲者:'));
-		tab_group_song.add(new FlxText(charterInputText.x, charterInputText.y - 15, 0, '譜面制作者:'));
+		// tab_group_song.add(artistInputText);
+		// tab_group_song.add(charterInputText);
+		// tab_group_song.add(new FlxText(stepperBPM.x, stepperBPM.y - 15, 0, '曲のBPM'));
+		// tab_group_song.add(new FlxText(stepperSpeed.x, stepperSpeed.y - 15, 0, '譜面の速度'));
+		 tab_group_song.add(new FlxText(player2DropDown.x, player2DropDown.y - 15, 0, '相手'));
+		 tab_group_song.add(new FlxText(gfVersionDropDown.x, gfVersionDropDown.y - 15, 0, '真ん中'));
+		 tab_group_song.add(new FlxText(player1DropDown.x, player1DropDown.y - 15, 0, 'プレイヤー'));
+		 tab_group_song.add(new FlxText(stageDropDown.x, stageDropDown.y - 15, 0, 'ステージ'));
+		 tab_group_song.add(new FlxText(noteSkinInputText.x, noteSkinInputText.y - 15, 0, 'ノーツのテクスチャ'));
+		 tab_group_song.add(new FlxText(noteSplashesInputText.x, noteSplashesInputText.y - 15, 0, 'ノーツスプラッシュのテクスチャ'));
+		// tab_group_song.add(new FlxText(artistInputText.x, artistInputText.y - 15, 0, '作曲者:'));
+		// tab_group_song.add(new FlxText(charterInputText.x, charterInputText.y - 15, 0, '譜面制作者:'));
 		tab_group_song.add(player2DropDown);
 		tab_group_song.add(gfVersionDropDown);
 		tab_group_song.add(player1DropDown);
