@@ -16,6 +16,7 @@ _____________________________________
 
 ### スペシャルサンクス!!!
 * わらびもちぃ - JPE Creator
+* ReiXp(Tombuntu) - JPE Ver.ZERO GitHub Actions Helper
 * Psych Engine Dev
 * Vs.OCstorms
 _____________________________________
