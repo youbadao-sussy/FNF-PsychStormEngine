@@ -36,7 +36,7 @@ class FPS extends TextField
 	@:noCompletion private var currentTime:Float;
 	@:noCompletion private var times:Array<Float>;
 
-	public function new(x:Float = 10, y:Float = 10, color:Int = 0x000000)
+	public function new(x:Float = 20, y:Float = 20, color:Int = 0x000000)
 	{
 		super();
 
@@ -46,7 +46,7 @@ class FPS extends TextField
 		currentFPS = 0;
 		selectable = false;
 		mouseEnabled = false;
-		defaultTextFormat = new TextFormat("Mgen+ 2c bold", 14, color);
+		defaultTextFormat = new TextFormat("Mgen+ 2c bold", 10, color);
 		autoSize = LEFT;
 		multiline = true;
 		text = "FPS";
@@ -82,28 +82,33 @@ class FPS extends TextField
 
 		if (currentCount != cacheCount /*&& visible*/)
 		{
+
 			text = "" + currentFPS + " FPS";
 			var memoryMegas:Float = 0;
 			var gigaMemory:Float = 0;
 			
 			#if openfl
+			
+			
 			memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
 			gigaMemory = Math.abs(FlxMath.roundDecimal((System.totalMemory / 1000000)/1000, 2));
 			if (memoryMegas < 1000){
-				text += "\nメモリー使用量: " + memoryMegas + " MB";
+				text += "\nRAM: " + memoryMegas + "mb";
 			}
 			if (memoryMegas >= 1000){
-				text += "\nメモリー使用量: " + gigaMemory + " GB";
+				text += "\nRAM: " + gigaMemory + "gb";
 			}
 			
+			
+			
 			//Devビルドの場合これをコメントアウトしてください。
-			text += "\nJPE v3.0.3-ZERO";
+			text += "\nPSE v0.0.1";
 
 			//Devビルドではない場合これをアンコメントしてください。
 			/*#if debug
-			text += "\nJPE v3.0.3-ZERO";
+			text += "\nPSE v0.0.1";
 			#else
-			text += "\nJPE v3.0.3";
+			text += "\nPSE v0.0.1";
 			#end*/
 
 			#end
@@ -119,7 +124,7 @@ class FPS extends TextField
 
 			text += "\n";
 		}
-
+		
 		cacheCount = currentCount;
 	}
 }

@@ -31,7 +31,7 @@ class ClientPrefs {
 	public static var controllerMode:Bool = false;
 	public static var hitsoundVolume:Float = 0;
 	public static var pauseMusic:String = 'Tea Time';
-	public static var dialoguelanguage:String = 'Japanese';
+	public static var dialoguelanguage:String = 'English';
 	public static var checkForUpdates:Bool = false;
 	public static var comboStacking = true;
 	public static var gameplaySettings:Map<String, Dynamic> = [

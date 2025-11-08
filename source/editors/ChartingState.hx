@@ -78,7 +78,7 @@ class ChartingState extends MusicBeatState
 	[
 		['', "Nothing. Yep, that's right."],
 		['Dadbattle Spotlight', "Used in Dad Battle,\nValue 1: 0/1 = ON/OFF,\n2 = Target Dad\n3 = Target BF"],
-		['Hey!', "Plays the \"Hey!\" animation from Bopeebo,\nValue 1: BF = Only Boyfriend, GF = Only Girlfriend,\nSomething else = Both.\nValue 2: Custom animation duration,\nleave it blank for 0.6s"],
+		['Hey!', "Plays the \"Hey!\" animation from Bopeebo,\nValue 1: BF = Only Boyfriend, GF = Only Girlfriend, \nDad = Only Dad, Something else = Both.\nValue 2: Custom animation duration,\nleave it blank for 0.6s"],
 		['Set GF Speed', "Sets GF head bopping speed,\nValue 1: 1 = Normal speed,\n2 = 1/2 speed, 4 = 1/4 speed etc.\nUsed on Fresh during the beatbox parts.\n\nWarning: Value must be integer!"],
 		['Philly Glow', "Exclusive to Week 3\nValue 1: 0/1/2 = OFF/ON/Reset Gradient\n \nNo, i won't add it to other weeks."],
 		['Kill Henchmen', "For Mom's songs, don't use this please, i love them :("],
@@ -223,7 +223,9 @@ class ChartingState extends MusicBeatState
 				gfVersion: 'gf',
 				speed: 1,
 				stage: 'stage',
-				validScore: false
+				validScore: false,
+				artist: 'Kawai Sprite',
+				charter: 'Unknown'
 			};
 			addSection();
 			PlayState.SONG = _song;
@@ -396,6 +398,8 @@ class ChartingState extends MusicBeatState
 	var playSoundBf:FlxUICheckBox = null;
 	var playSoundDad:FlxUICheckBox = null;
 	var UI_songTitle:FlxUIInputText;
+	var artistInputText:FlxUIInputText;
+	var charterInputText:FlxUIInputText;
 	var noteSkinInputText:FlxUIInputText;
 	var noteSplashesInputText:FlxUIInputText;
 	var stageDropDown:FlxUIDropDownMenuCustom;
@@ -404,6 +408,12 @@ class ChartingState extends MusicBeatState
 	{
 		UI_songTitle = new FlxUIInputText(10, 10, 70, _song.song, 8);
 		blockPressWhileTypingOn.push(UI_songTitle);
+
+		artistInputText = new FlxUIInputText(110, 68, 70, _song.artist, 8);
+		blockPressWhileTypingOn.push(artistInputText);
+
+		charterInputText = new FlxUIInputText(110, 98, 70, _song.charter, 8);
+		blockPressWhileTypingOn.push(charterInputText);
 
 		var check_voices = new FlxUICheckBox(10, 25, null, null, "ボイスありの譜面", 100);
 		check_voices.checked = _song.needsVoices;
@@ -459,6 +469,7 @@ class ChartingState extends MusicBeatState
 		{
 			saveEvents();
 		});
+		
 
 		var clear_events:FlxButton = new FlxButton(320, 310, 'イベント全消去', function()
 			{
@@ -605,6 +616,12 @@ class ChartingState extends MusicBeatState
 		var tab_group_song = new FlxUI(null, UI_box);
 		tab_group_song.name = "Song";
 		tab_group_song.add(UI_songTitle);
+		
+		/*
+		var tab_group_songArtist = new FlxUI(null, UI_box);
+		tab_group_songArtist.name = "Artist";
+		tab_group_songArtist.add(UI_songArtist);
+		*/
 
 		tab_group_song.add(check_voices);
 		tab_group_song.add(clear_events);
@@ -620,6 +637,8 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(reloadNotesButton);
 		tab_group_song.add(noteSkinInputText);
 		tab_group_song.add(noteSplashesInputText);
+		tab_group_song.add(artistInputText);
+		tab_group_song.add(charterInputText);
 		tab_group_song.add(new FlxText(stepperBPM.x, stepperBPM.y - 15, 0, '曲のBPM'));
 		tab_group_song.add(new FlxText(stepperSpeed.x, stepperSpeed.y - 15, 0, '譜面の速度'));
 		tab_group_song.add(new FlxText(player2DropDown.x, player2DropDown.y - 15, 0, '相手'));
@@ -628,6 +647,8 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(new FlxText(stageDropDown.x, stageDropDown.y - 15, 0, 'ステージ'));
 		tab_group_song.add(new FlxText(noteSkinInputText.x, noteSkinInputText.y - 15, 0, 'ノーツのテクスチャ'));
 		tab_group_song.add(new FlxText(noteSplashesInputText.x, noteSplashesInputText.y - 15, 0, 'ノーツスプラッシュのテクスチャ'));
+		tab_group_song.add(new FlxText(artistInputText.x, artistInputText.y - 15, 0, '作曲者:'));
+		tab_group_song.add(new FlxText(charterInputText.x, charterInputText.y - 15, 0, '譜面制作者:'));
 		tab_group_song.add(player2DropDown);
 		tab_group_song.add(gfVersionDropDown);
 		tab_group_song.add(player1DropDown);
@@ -1538,6 +1559,9 @@ class ChartingState extends MusicBeatState
 		}
 		Conductor.songPosition = FlxG.sound.music.time;
 		_song.song = UI_songTitle.text;
+		_song.artist = artistInputText.text;
+		_song.charter = charterInputText.text;
+
 
 		strumLineUpdateY();
 		for (i in 0...8){
