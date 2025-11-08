@@ -538,7 +538,7 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(new FlxText(artistInputText.x, artistInputText.y - 15, 0, '作曲者:'));
 		tab_group_song.add(new FlxText(charterInputText.x, charterInputText.y - 15, 0, '譜面制作者:'));
 
-		objY += 35;
+		objY += 110;
 		#if MODS_ALLOWED
 		var directories:Array<String> = [Paths.mods('characters/'), Paths.mods(Paths.currentModDirectory + '/characters/'), Paths.getPreloadPath('characters/')];
 		for(mod in Paths.getGlobalMods())
