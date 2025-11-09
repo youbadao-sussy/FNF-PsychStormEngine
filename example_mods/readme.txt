@@ -1,4 +1,6 @@
-You can either edit files or add entirely new ones here.
+PsychStorm and Psych's mods/ folder.
+You can also add or edit specific files without the mod template, you just have to re-create the path to said file.
+
 
 ABOUT EDITTING:
 It doesn't matter if you want to edit something in assets/shared/images/ or assets/preload/images/,

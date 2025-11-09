@@ -477,7 +477,7 @@ class ChartingState extends MusicBeatState
 		});
 		
 
-		var clear_events:FlxButton = new FlxButton(objX + 130, objY + 35, 'イベント全消去', function()
+		var clear_events:FlxButton = new FlxButton(objX + 130, objY + 35, 'イベント全消去', function() 
 			{
 				openSubState(new Prompt('これを実行すると、全てのイベントが削除されます。\n\n実行しますか？', 0, clearEvents, null,ignoreWarnings));
 			});
