@@ -528,8 +528,7 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'stage': new StageWeek1(); //Week 1
-			/*
+			case 'stage':// new StageWeek1(); //Week 1
 				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 				add(bg);
 
@@ -554,7 +553,6 @@ class PlayState extends MusicBeatState
 					add(stageCurtains);
 				}
 				dadbattleSmokes = new FlxSpriteGroup(); //troll'd
-			*/
 
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
