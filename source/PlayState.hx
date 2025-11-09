@@ -526,7 +526,8 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'stage': //Week 1
+			case 'stage': new StageWeek1(); //Week 1
+			/*
 				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 				add(bg);
 
@@ -551,6 +552,7 @@ class PlayState extends MusicBeatState
 					add(stageCurtains);
 				}
 				dadbattleSmokes = new FlxSpriteGroup(); //troll'd
+			*/
 
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
@@ -2615,7 +2617,7 @@ class PlayState extends MusicBeatState
 
 				var newCharacter:String = event.value2;
 				addCharacterToList(newCharacter, charType);
-
+			/*
 			case 'Dadbattle Spotlight':
 				dadbattleBlack = new BGSprite(null, -800, -400, 0, 0);
 				dadbattleBlack.makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
@@ -2648,7 +2650,7 @@ class PlayState extends MusicBeatState
 				smoke.active = true;
 				smoke.flipX = true;
 				dadbattleSmokes.add(smoke);
-
+			*/
 
 			case 'Philly Glow':
 				blammedLightsBlack = new FlxSprite(FlxG.width * -0.5, FlxG.height * -0.5).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
