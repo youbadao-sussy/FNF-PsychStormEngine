@@ -184,6 +184,9 @@ class PlayState extends MusicBeatState
 	public var opponentStrums:FlxTypedGroup<StrumNote>;
 	public var playerStrums:FlxTypedGroup<StrumNote>;
 	public var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
+	public var grpPlayerNoteHoldCovers:FlxTypedGroup<NoteHoldCover>;
+	public var grpOpponentNoteHoldCovers:FlxTypedGroup<NoteHoldCover>;
+	public var grpSubNoteHoldCovers:FlxTypedGroup<NoteHoldCover>;
 
 	public var camZooming:Bool = false;
 	public var camZoomingMult:Float = 1;
@@ -413,6 +416,9 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.add(camHUD, false);
 		FlxG.cameras.add(camOther, false);
 		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
+		grpPlayerNoteHoldCovers = new FlxTypedGroup<NoteHoldCover>();
+		grpOpponentNoteHoldCovers = new FlxTypedGroup<NoteHoldCover>();
+		grpSubNoteHoldCovers = new FlxTypedGroup<NoteHoldCover>();
 
 		FlxG.cameras.setDefaultDrawTarget(camGame, true);
 		CustomFadeTransition.nextCamera = camOther;
@@ -1086,6 +1092,9 @@ class PlayState extends MusicBeatState
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
 		add(grpNoteSplashes);
+		add(grpPlayerNoteHoldCovers);
+		add(grpOpponentNoteHoldCovers);
+		add(grpSubNoteHoldCovers);
 
 		if(ClientPrefs.timeBarType == 'Song Name')
 		{
@@ -1182,8 +1191,29 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBarBG.y - 78;
 		}
 
+		for (i in 0...4) { // :joy_cat:
+			var noteHoldCover = new NoteHoldCover(0, 0, i);
+			grpOpponentNoteHoldCovers.add(noteHoldCover);
+			noteHoldCover.visible = false;
+		}
+
+		for (i in 0...4) { // :joy_cat:
+			var noteHoldCover = new NoteHoldCover(0, 0, i);
+			grpPlayerNoteHoldCovers.add(noteHoldCover);
+			noteHoldCover.visible = false;
+		}
+
+		for (i in 0...4) { // :joy_cat:
+			var noteHoldCover = new NoteHoldCover(0, 0, i);
+			grpSubNoteHoldCovers.add(noteHoldCover);
+			noteHoldCover.visible = false;
+		}
+
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
+		grpPlayerNoteHoldCovers.cameras = [grpNoteSplashes.camera];
+		grpOpponentNoteHoldCovers.cameras = [grpNoteSplashes.camera];
+		grpSubNoteHoldCovers.cameras = [grpNoteSplashes.camera];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
@@ -3043,6 +3073,32 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
+		if (startedCountdown)
+		{
+			for (i in 0...grpOpponentNoteHoldCovers.length) { // :joy_cat:
+				grpOpponentNoteHoldCovers.members[i].setPosition(opponentStrums.members[i].x + opponentStrums.members[i].width / 2 - grpOpponentNoteHoldCovers.members[i].width / 2 + offsetX,
+					opponentStrums.members[i].y + opponentStrums.members[i].height / 2 - grpOpponentNoteHoldCovers.members[i].height / 2 + offsetY);
+	
+				if (opponentStrums.members[i].animation.curAnim.name == "static" && opponentStrums.members[i].visible)
+					grpOpponentNoteHoldCovers.members[i].visible = false;
+			}
+			for (i in 0...playerStrums.length) { // :joy_cat:
+				grpPlayerNoteHoldCovers.members[i].setPosition(playerStrums.members[i].x + playerStrums.members[i].width / 2 - grpPlayerNoteHoldCovers.members[i].width / 2 + offsetX,
+					playerStrums.members[i].y + playerStrums.members[i].height / 2 - grpPlayerNoteHoldCovers.members[i].height / 2 + offsetY);
+	
+				if (getControl(keyShitArray[i]))
+					grpPlayerNoteHoldCovers.members[i].endAnim();
+			}
+			for (i in 0...subStrums.length) { // :joy_cat:
+				grpSubNoteHoldCovers.members[i].setPosition(subStrums.members[i].x + subStrums.members[i].width / 2 - grpSubNoteHoldCovers.members[i].width / 2 + offsetX,
+					subStrums.members[i].y + subStrums.members[i].height / 2 - grpSubNoteHoldCovers.members[i].height / 2 + offsetY);
+				
+				if (subStrums.members[i].animation.curAnim.name == "static" && subStrums.members[i].visible)
+					grpSubNoteHoldCovers.members[i].visible = false;
+			}
+		}
+
+
 		setOnLuas('curDecStep', curDecStep);
 		setOnLuas('curDecBeat', curDecBeat);
 
@@ -4515,6 +4571,10 @@ class PlayState extends MusicBeatState
 			}
 			else if (boyfriend.animation.curAnim != null && boyfriend.holdTimer > Conductor.stepCrochet * (0.0011 / FlxG.sound.music.pitch) * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 			{
+				for (i in 0...4) { // :joy_cat:
+					if (grpPlayerNoteHoldCovers.members[i].visible) grpPlayerNoteHoldCovers.members[i].endAnim();
+				}
+
 				boyfriend.dance();
 				//boyfriend.animation.curAnim.finish();
 			}
@@ -4582,6 +4642,9 @@ class PlayState extends MusicBeatState
 			var animToPlay:String = singAnimations[Std.int(Math.abs(daNote.noteData))] + 'miss' + daNote.animSuffix;
 			char.playAnim(animToPlay, true);
 		}
+		if(daNote.isSustainNote) 
+			grpPlayerNoteHoldCovers.members[daNote.noteData].endAnim();
+
 
 		callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
 	}
@@ -4676,6 +4739,12 @@ class PlayState extends MusicBeatState
 
 		callOnLuas('opponentNoteHit', [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
 
+		if (note.sustainLength > 150 && !note.gfNote || note.sustainLength > 150 && note.gfNote)
+			grpOpponentNoteHoldCovers.members[note.noteData].startAnim();
+
+		if (note.animation.curAnim.name.endsWith('end'))
+			grpOpponentNoteHoldCovers.members[note.noteData].visible = false;
+
 		if (!note.isSustainNote)
 		{
 			note.kill();
@@ -4712,6 +4781,12 @@ class PlayState extends MusicBeatState
 					}
 				}
 
+				if (note.sustainLength > 150 && !note.gfNote)
+					grpSubNoteHoldCovers.members[note.noteData].startAnim();
+				
+				if (note.animation.curAnim.name.endsWith('end'))
+					grpSubNoteHoldCovers.members[note.noteData].visible = false;
+
 				note.wasGoodHit = true;
 				if (!note.isSustainNote)
 				{
@@ -4728,6 +4803,13 @@ class PlayState extends MusicBeatState
 				if(combo > 9999) combo = 9999;
 				popUpScore(note);
 			}
+
+			if (note.sustainLength > 150 && !note.gfNote || note.sustainLength > 150 && note.gfNote)
+				grpPlayerNoteHoldCovers.members[note.noteData].startAnim();
+
+			if (note.animation.curAnim.name.endsWith('end'))
+				grpPlayerNoteHoldCovers.members[note.noteData].endAnim();
+
 			health += note.hitHealth * healthGain;
 
 			if(!note.noAnimation) {
