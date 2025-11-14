@@ -161,7 +161,8 @@ class Character extends FlxSprite
 						frames = Paths.getPackerAtlas(json.image);
 					
 					case "sparrow":
-						frames = Paths.getSparrowAtlas(json.image);
+						//frames = Paths.getSparrowAtlas(json.image);
+						frames = Paths.getMultiAtlas(json.image.split(','));
 					
 					case "texture":
 						frames = AtlasFrameMaker.construct(json.image);
