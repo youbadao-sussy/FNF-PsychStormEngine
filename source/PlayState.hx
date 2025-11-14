@@ -3073,6 +3073,16 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
+		
+		var offsetX:Float = -10;
+		var offsetY:Float = 45;
+		var keyShitArray:Array<String> = [
+			'NOTE_LEFT_R',
+			'NOTE_DOWN_R',
+			'NOTE_UP_R',
+			'NOTE_RIGHT_R'
+		];
+
 		if (startedCountdown)
 		{
 			for (i in 0...grpOpponentNoteHoldCovers.length) { // :joy_cat:
