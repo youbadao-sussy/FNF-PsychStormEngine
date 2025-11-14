@@ -3099,13 +3099,13 @@ class PlayState extends MusicBeatState
 				if (getControl(keyShitArray[i]))
 					grpPlayerNoteHoldCovers.members[i].endAnim();
 			}
-			for (i in 0...subStrums.length) { // :joy_cat:
+			/*for (i in 0...subStrums.length) { // :joy_cat:
 				grpSubNoteHoldCovers.members[i].setPosition(subStrums.members[i].x + subStrums.members[i].width / 2 - grpSubNoteHoldCovers.members[i].width / 2 + offsetX,
 					subStrums.members[i].y + subStrums.members[i].height / 2 - grpSubNoteHoldCovers.members[i].height / 2 + offsetY);
 				
 				if (subStrums.members[i].animation.curAnim.name == "static" && subStrums.members[i].visible)
 					grpSubNoteHoldCovers.members[i].visible = false;
-			}
+			}*/
 		}
 
 
