@@ -5,6 +5,7 @@ import backend.ui.*; //Psych-UI
 
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.FlxCamera;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
