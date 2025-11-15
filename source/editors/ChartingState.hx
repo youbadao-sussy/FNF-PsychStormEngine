@@ -58,7 +58,7 @@ import sys.io.File;
 @:access(flixel.system.FlxSound._sound)
 @:access(openfl.media.Sound.__buffer)
 
-class ChartingState extends MusicBeatState
+class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychUIEvent
 {
 	public static var noteTypeList:Array<String> = //Used for backwards compatibility with 0.1 - 0.3.2 charts, though, you should add your hardcoded custom note types here too.
 	[
@@ -434,12 +434,15 @@ class ChartingState extends MusicBeatState
 		});
 
 		//var reloadSong:FlxButton = new FlxButton(saveButton.x + 90, saveButton.y, "曲リロード", function()
-		var reloadSong:FlxButton = new FlxButton(objX + 190, saveButton.y, "曲リロード", function()
+		//var reloadSong:FlxButton = new FlxButton(objX + 190, saveButton.y, "曲リロード", function()
+		var reloadSong:PsychUIButton = new PsychUIButton(objX + 120, objY, '曲リロード', function() loadMusic(true), 80);
+		/*
 		{
 			currentSongName = Paths.formatToSongPath(UI_songTitle.text);
 			loadSong();
 			updateWaveform();
 		});
+		*/
 
 		var reloadSongJson:FlxButton = new FlxButton(objX + 190, saveButton.y + 30, "譜面リロード", function()
 		{
