@@ -3,5 +3,5 @@
 * Add Erect Songs
 * Add Pico Mixes
 ## Engine Change/ エンジンの変更内容 :
-＊ Add Stage Editor
-＊ Add Freeplay Editor
+* Add Stage Editor
+* Add Freeplay Editor
