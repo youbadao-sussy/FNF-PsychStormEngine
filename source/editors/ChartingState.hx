@@ -1471,7 +1471,8 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 	function UIEvent():Void
 	{
 		if (id == PsychUINumericStepper.CHANGE_EVENT && (sender is PsychUINumericStepper))
-			{var nums:PsychUINumericStepper = cast sender;
+		{
+			var nums:PsychUINumericStepper = cast sender;
 			var wname = nums.name;
 			//FlxG.log.add(wname);
 			switch(wname)
