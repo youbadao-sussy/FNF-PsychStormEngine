@@ -4,12 +4,15 @@ package editors;
 import Discord.DiscordClient;
 #end
 import flash.geom.Rectangle;
+
 import haxe.Json;
 import haxe.format.JsonParser;
 import haxe.io.Bytes;
+
 import Conductor.BPMChangeEvent;
 import Section.SwagSection;
 import Song.SwagSong;
+
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -38,14 +41,18 @@ import flixel.ui.FlxButton;
 import flixel.ui.FlxSpriteButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxSort;
+
 import lime.media.AudioBuffer;
 import lime.utils.Assets;
+
 import openfl.events.Event;
 import openfl.events.IOErrorEvent;
 import openfl.media.Sound;
 import openfl.net.FileReference;
 import openfl.utils.Assets as OpenFlAssets;
 import openfl.utils.ByteArray;
+
+import backend.ui.PsychUIEventHandler.PsychUIEvent;
 
 using DateTools;
 #if sys
