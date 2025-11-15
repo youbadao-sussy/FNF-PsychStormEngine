@@ -35,6 +35,7 @@ jobs:
         run: |
           haxelib install lime 8.0.1 --always --quiet
           haxelib install hxcpp --always --quiet
+          haxelib install flixel-addons 3.0.2 --always --quiet
           haxe --main Setup -D analyzer-optimize --interp
           haxelib set hxCodec 2.5.1 --always
           haxelib set lime 8.0.1 --always
