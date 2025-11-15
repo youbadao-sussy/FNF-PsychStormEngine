@@ -435,14 +435,15 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 
 		//var reloadSong:FlxButton = new FlxButton(saveButton.x + 90, saveButton.y, "曲リロード", function()
 		//var reloadSong:FlxButton = new FlxButton(objX + 190, saveButton.y, "曲リロード", function()
-		var reloadSong:PsychUIButton = new PsychUIButton(objX + 190, objY, '曲リロード', function() loadMusic(true), 80);
-		/*
+		//var reloadSong:PsychUIButton = new PsychUIButton(objX + 190, objY, '曲リロード', function() loadMusic(true), 80);
+		var reloadSong:PsychUIButton = new PsychUIButton(objX + 190, objY, '曲リロード', function()
+		
 		{
 			currentSongName = Paths.formatToSongPath(UI_songTitle.text);
 			loadSong();
 			updateWaveform();
 		});
-		*/
+		
 
 		var reloadSongJson:FlxButton = new FlxButton(objX + 190, saveButton.y + 30, "譜面リロード", function()
 		{
