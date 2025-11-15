@@ -1456,7 +1456,6 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 			vocals.play();
 		};
 	}
-
 	function generateUI():Void
 	{
 		while (bullshitUI.members.length > 0)
@@ -1467,6 +1466,55 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		// general shit
 		var title:FlxText = new FlxText(UI_box.x + 20, UI_box.y + 20, 0);
 		bullshitUI.add(title);
+	}
+
+	function UIEvent():Void
+	{
+		if (id == PsychUINumericStepper.CHANGE_EVENT && (sender is PsychUINumericStepper))
+			{var nums:PsychUINumericStepper = cast sender;
+			var wname = nums.name;
+			//FlxG.log.add(wname);
+			switch(wname)
+			{
+				case 'section_beats':
+					_song.notes[curSec].sectionBeats = nums.value;
+					reloadGridLayer();
+
+				case 'song_speed':
+					_song.speed = nums.value;
+
+				case 'song_bpm':
+					_song.bpm = nums.value;
+					Conductor.mapBPMChanges(_song);
+					Conductor.bpm = nums.value;
+					stepperSusLength.stepSize = Math.ceil(Conductor.stepCrochet / 2);
+					stepperSusLength.step = Math.ceil(Conductor.stepCrochet / 2);
+					updateGrid();
+
+				case 'note_susLength':
+					if(curSelectedNote != null && curSelectedNote[2] != null) {
+						curSelectedNote[2] = nums.value;
+						updateGrid();
+					}
+
+				case 'section_bpm':
+					_song.notes[curSec].bpm = nums.value;
+					updateGrid();
+
+				case 'inst_volume':
+					FlxG.sound.music.volume = nums.value;
+					if(check_mute_inst.checked) FlxG.sound.music.volume = 0;
+
+				case 'voices_volume':
+					vocals.volume = nums.value;
+					if(check_mute_vocals.checked) vocals.volume = 0;
+
+				case 'voices_opp_volume':
+					opponentVocals.volume = nums.value;
+					if(check_mute_vocals_opponent.checked) opponentVocals.volume = 0;
+			}
+		}
+			
 	}
 
 	override function getEvent(id:String, sender:Dynamic, data:Dynamic, ?params:Array<Dynamic>)
@@ -2739,31 +2787,6 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 	}
 
 	
-	public function UIEvent(id:String, sender:Dynamic)
-	{
-		//trace(id, sender);
-		switch(id)
-		{
-			case PsychUIButton.CLICK_EVENT, PsychUIDropDownMenu.CLICK_EVENT:/*
-				ignoreClickForThisFrame = true;
-			*/
-			case PsychUIBox.CLICK_EVENT:/*
-				ignoreClickForThisFrame = true;
-				if(sender == upperBox) updateUpperBoxBg();
-			*/
-
-			case PsychUIBox.MINIMIZE_EVENT:/*
-				if(sender == upperBox)
-				{
-					upperBox.bg.visible = !upperBox.isMinimized;
-					updateUpperBoxBg();
-				}
-			*/
-			case PsychUIBox.DROP_EVENT:
-				//chartEditorSave.data.mainBoxPosition = [mainBox.x, mainBox.y];
-				//chartEditorSave.data.infoBoxPosition = [infoBox.x, infoBox.y];
-		}
-	}
 
 	function setupNoteData(i:Array<Dynamic>, isNextSection:Bool):Note
 	{
