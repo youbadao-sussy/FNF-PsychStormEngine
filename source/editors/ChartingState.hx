@@ -47,7 +47,7 @@ import openfl.net.FileReference;
 import openfl.utils.Assets as OpenFlAssets;
 import openfl.utils.ByteArray;
 
-using StringTools;
+using DateTools;
 #if sys
 import flash.media.Sound;
 import sys.FileSystem;
