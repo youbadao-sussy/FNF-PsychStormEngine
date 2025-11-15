@@ -2759,8 +2759,8 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 				}
 
 			case PsychUIBox.DROP_EVENT:
-				chartEditorSave.data.mainBoxPosition = [mainBox.x, mainBox.y];
-				chartEditorSave.data.infoBoxPosition = [infoBox.x, infoBox.y];
+				//chartEditorSave.data.mainBoxPosition = [mainBox.x, mainBox.y];
+				//chartEditorSave.data.infoBoxPosition = [infoBox.x, infoBox.y];
 		}
 	}
 
