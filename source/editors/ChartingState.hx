@@ -1468,7 +1468,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		bullshitUI.add(title);
 	}
 
-	public function UIEvent():Void
+	public function UIEvent(id:String, sender:Dynamic)
 	{
 		if (id == PsychUINumericStepper.CHANGE_EVENT && (sender is PsychUINumericStepper))
 		{
@@ -1895,7 +1895,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 			}
 
 			if (FlxG.keys.justPressed.TAB)
-			{
+			{/*
 				if (FlxG.keys.pressed.SHIFT)
 				{
 					UI_box.selected_tab -= 1;
@@ -1907,6 +1907,18 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 					UI_box.selected_tab += 1;
 					if (UI_box.selected_tab >= 3)
 						UI_box.selected_tab = 0;
+				}*/
+				if (FlxG.keys.pressed.SHIFT)
+				{
+					var id:Int = UI_box.selectedIndex - 1;
+					if (id < 0) id = UI_box.tabs.length-1;
+					UI_box.selectedIndex = id;
+				}
+				else
+				{
+					var id:Int = UI_box.selectedIndex + 1;
+					if (id >= UI_box.tabs.length) id = 0;
+					UI_box.selectedIndex = id;
 				}
 			}
 
