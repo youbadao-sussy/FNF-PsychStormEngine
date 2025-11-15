@@ -2744,20 +2744,21 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		//trace(id, sender);
 		switch(id)
 		{
-			case PsychUIButton.CLICK_EVENT, PsychUIDropDownMenu.CLICK_EVENT:
+			case PsychUIButton.CLICK_EVENT, PsychUIDropDownMenu.CLICK_EVENT:/*
 				ignoreClickForThisFrame = true;
-
-			case PsychUIBox.CLICK_EVENT:
+			*/
+			case PsychUIBox.CLICK_EVENT:/*
 				ignoreClickForThisFrame = true;
 				if(sender == upperBox) updateUpperBoxBg();
+			*/
 
-			case PsychUIBox.MINIMIZE_EVENT:
+			case PsychUIBox.MINIMIZE_EVENT:/*
 				if(sender == upperBox)
 				{
 					upperBox.bg.visible = !upperBox.isMinimized;
 					updateUpperBoxBg();
 				}
-
+			*/
 			case PsychUIBox.DROP_EVENT:
 				//chartEditorSave.data.mainBoxPosition = [mainBox.x, mainBox.y];
 				//chartEditorSave.data.infoBoxPosition = [infoBox.x, infoBox.y];
