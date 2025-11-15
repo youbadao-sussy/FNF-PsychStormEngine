@@ -1468,7 +1468,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		bullshitUI.add(title);
 	}
 
-	function UIEvent():Void
+	public function UIEvent():Void
 	{
 		if (id == PsychUINumericStepper.CHANGE_EVENT && (sender is PsychUINumericStepper))
 		{
@@ -1515,7 +1515,63 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 					if(check_mute_vocals_opponent.checked) opponentVocals.volume = 0;
 			}
 		}
-			
+		else if(id == PsychUIInputText.CHANGE_EVENT && (sender is PsychUIInputText)) {
+			if(sender == noteSplashesInputText) {
+				_song.splashSkin = noteSplashesInputText.text;
+			}
+			else if(sender == noteSkinInputText) {
+				_song.arrowSkin = noteSkinInputText.text;
+			}
+			else if(sender == gameOverCharacterInputText) {
+				_song.gameOverChar = gameOverCharacterInputText.text;
+			}
+			else if(sender == gameOverSoundInputText) {
+				_song.gameOverSound = gameOverSoundInputText.text;
+			}
+			else if(sender == gameOverLoopInputText) {
+				_song.gameOverLoop = gameOverLoopInputText.text;
+			}
+			else if(sender == gameOverEndInputText) {
+				_song.gameOverEnd = gameOverEndInputText.text;
+			}
+			else if(curSelectedNote != null)
+			{
+				if(sender == value1InputText) {
+					if(curSelectedNote[1][curEventSelected] != null)
+					{
+						curSelectedNote[1][curEventSelected][1] = value1InputText.text;
+						updateGrid();
+					}
+				}
+				else if(sender == value2InputText) {
+					if(curSelectedNote[1][curEventSelected] != null)
+					{
+						curSelectedNote[1][curEventSelected][2] = value2InputText.text;
+						updateGrid();
+					}
+				}
+				else if(sender == strumTimeInputText) {
+					var value:Float = Std.parseFloat(strumTimeInputText.text);
+					if(Math.isNaN(value)) value = 0;
+					curSelectedNote[0] = value;
+					updateGrid();
+				}
+			}
+		}
+		else if (id == PsychUISlider.CHANGE_EVENT && (sender is PsychUISlider))
+		{
+			switch (sender)
+			{
+				case 'playbackSpeed':
+					playbackSpeed = #if FLX_PITCH Std.int(sliderRate.value) #else 1.0 #end;
+			}
+		}
+
+		// FlxG.log.add(id + " WEED " + sender + " WEED " + data + " WEED " + params);
+	}
+
+
+
 	}
 
 	override function getEvent(id:String, sender:Dynamic, data:Dynamic, ?params:Array<Dynamic>)
