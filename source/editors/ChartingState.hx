@@ -1467,7 +1467,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		var title:FlxText = new FlxText(UI_box.x + 20, UI_box.y + 20, 0);
 		bullshitUI.add(title);
 	}
-
+	
 	public function UIEvent():Void
 	{
 		if (id == PsychUINumericStepper.CHANGE_EVENT && (sender is PsychUINumericStepper))
@@ -1571,10 +1571,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 	}
 
 
-
-	}
-
-	override function getEvent(id:String, sender:Dynamic, data:Dynamic, ?params:Array<Dynamic>)
+	public function getEvent(id:String, sender:Dynamic, data:Dynamic, ?params:Array<Dynamic>)
 	{
 		if (id == FlxUICheckBox.CLICK_EVENT)
 		{
@@ -1600,7 +1597,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 				case "アニメーションさせない":
 					_song.notes[curSec].altAnim = check.checked;
 			}
-		}
+		}/*
 		else if (id == FlxUINumericStepper.CHANGE_EVENT && (sender is FlxUINumericStepper))
 		{
 			var nums:FlxUINumericStepper = cast sender;
@@ -1677,7 +1674,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 				case 'playbackSpeed':
 					playbackSpeed = Std.int(sliderRate.value);
 			}
-		}
+		}*/
 
 		// FlxG.log.add(id + " WEED " + sender + " WEED " + data + " WEED " + params);
 	}
