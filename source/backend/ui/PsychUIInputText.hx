@@ -214,7 +214,6 @@ class PsychUIInputText extends FlxSpriteGroup
 						}
 						while(caretIndex < text.length);
 					}
-
 				default:
 			}
 			updateCaret();
