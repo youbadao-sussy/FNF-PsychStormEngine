@@ -18,9 +18,9 @@ import openfl.media.Sound;
 import openfl.net.FileReference;
 import openfl.utils.Assets as OpenFlAssets;
 
-import backend.Song;
-import backend.Section;
-import backend.StageData;
+import Song;
+import Section;
+import StageData;
 
 import Note;
 import StrumNote;
