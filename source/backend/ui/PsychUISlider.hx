@@ -15,7 +15,7 @@ class PsychUISlider extends FlxSpriteGroup
 	public var onChange:Float->Void;
 	public var min(default, set):Float = -999;
 	public var max(default, set):Float = 999;
-	public var decimals(default, set):Int = 2;
+	public var decimals(default, set):Int = 0;
 	public function new(x:Float = 0, y:Float = 0, callback:Float->Void, def:Float = 0, min:Float = -999, max:Float = 999, wid:Float = 200, mainColor:FlxColor = FlxColor.WHITE, handleColor:FlxColor = 0xFFAAAAAA)
 	{
 		super(x, y);
@@ -66,7 +66,7 @@ class PsychUISlider extends FlxSpriteGroup
 		if(FlxG.mouse.justMoved || FlxG.mouse.justPressed || forceNextUpdate)
 		{
 			forceNextUpdate = false;
-			if(FlxG.mouse.justPressed && (FlxG.mouse.overlaps(bar, camera) || FlxG.mouse.overlaps(handle, camera)))
+			if(FlxG.mouse.justPressed && FlxG.mouse.overlaps(this, camera))
 				movingHandle = true;
 			
 			if(movingHandle)
@@ -110,7 +110,7 @@ class PsychUISlider extends FlxSpriteGroup
 		minText.text = Std.string(FlxMath.roundDecimal(min, decimals));
 		maxText.text = Std.string(FlxMath.roundDecimal(max, decimals));
 		valueText.text = Std.string(FlxMath.roundDecimal(value, decimals));
-		if(this.onChange != null) this.onChange(FlxMath.roundDecimal(value, decimals));
+		if(this.onChange != null) this.onChange(FlxMath.roundDecimal(v, decimals));
 		_updatePositions();
 		return decimals;
 	}
@@ -136,7 +136,7 @@ class PsychUISlider extends FlxSpriteGroup
 	function set_value(v:Float)
 	{
 		value = Math.max(min, Math.min(max, v));
-		valueText.text = Std.string(FlxMath.roundDecimal(value, decimals));
+		valueText.text = Std.string(FlxMath.roundDecimal(v, decimals));
 		_updateHandleX();
 		return value;
 	}

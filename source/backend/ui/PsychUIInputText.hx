@@ -66,7 +66,7 @@ class PsychUIInputText extends FlxSpriteGroup
 		this.bg = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
 		this.behindText = new FlxSprite(1, 1).makeGraphic(1, 1, FlxColor.WHITE);
 		this.selection = new FlxSprite().makeGraphic(1, 1, FlxColor.WHITE);
-		this.textObj = new FlxText(1, 1, Math.max(1, wid - 2), '', size);
+		this.textObj = new FlxText(1, 1, Math.max(1, wid - 2), 'TEST', size);
 		this.caret = new FlxSprite().makeGraphic(1, 1, FlxColor.WHITE);
 		add(this.bg);
 		add(this.behindText);
@@ -214,6 +214,7 @@ class PsychUIInputText extends FlxSpriteGroup
 						}
 						while(caretIndex < text.length);
 					}
+
 				default:
 			}
 			updateCaret();
@@ -401,13 +402,11 @@ class PsychUIInputText extends FlxSpriteGroup
 				focusOn = this;
 				caretIndex = 0;
 				var lastBound:Float = 0;
-				var textObjX:Float = textObj.getScreenPosition(camera).x;
-				var mousePosX:Float = FlxG.mouse.getScreenPosition(camera).x;
-				var txtX:Float = textObjX - textObj.textField.scrollH;
+				var txtX:Float = textObj.x - textObj.textField.scrollH;
 
 				for (i => bound in _boundaries)
 				{
-					if(mousePosX >= txtX + (bound - lastBound)/2)
+					if(FlxG.mouse.screenX >= txtX + (bound - lastBound)/2)
 					{
 						caretIndex = i+1;
 						txtX += bound - lastBound;
@@ -659,7 +658,7 @@ class PsychUIInputText extends FlxSpriteGroup
 
 		var letter:String = String.fromCharCode(charCode);
 		letter = filter(letter);
-		if(letter.length > 0 && (maxLength == 0 || (text.length + letter.length) <= maxLength))
+		if(letter.length > 0 && (maxLength == 0 || (text.length + letter.length) < maxLength))
 		{
 			var lastText = text;
 			//trace('Drawing character: $letter');

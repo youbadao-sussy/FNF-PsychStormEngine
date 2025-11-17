@@ -9,16 +9,13 @@ typedef UIStyleData = {
 class PsychUIBox extends FlxSpriteGroup
 {
 	public static final CLICK_EVENT = "uibox_click";
-	public static final MINIMIZE_EVENT = "uibox_minimize"; //called on both minimizing and maximizing
-	public static final DRAG_EVENT = "uibox_drag";
-	public static final DROP_EVENT = "uibox_drop";
 	public var tabs(default, null):Array<PsychUITab> = [];
 	
 	public var selectedTab(default, set):PsychUITab = null;
 	public var selectedIndex(default, set):Int = -1;
 	public var selectedName(default, set):String = null;
 
-	public var bg:FlxSprite;
+	var bg:FlxSprite;
 
 	public var selectedStyle:UIStyleData = {
 		bgColor: FlxColor.WHITE,
@@ -39,7 +36,6 @@ class PsychUIBox extends FlxSpriteGroup
 	public var canMove:Bool = true;
 	public var canMinimize(default, set):Bool = true;
 	public var isMinimized(default, set):Bool = false;
-	public var minimizeOnFocusLost:Bool = false;
 
 	public function new(x:Float, y:Float, width:Int, height:Int, tabs:Array<String> = null)
 	{
@@ -73,7 +69,7 @@ class PsychUIBox extends FlxSpriteGroup
 	var _lastClick:Float = 0;
 
 	public var forceCheckNext:Bool = false;
-	public var broadcastBoxEvents:Bool = true;
+	public var broadcastBoxEvent:Bool = true;
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -86,7 +82,6 @@ class PsychUIBox extends FlxSpriteGroup
 		}
 		else
 		{
-			var wasDragging:Bool = _draggingBox;
 			_draggingPos = null;
 			_draggingPoint = null;
 			_draggingBox = false;
@@ -95,7 +90,6 @@ class PsychUIBox extends FlxSpriteGroup
 				if(_pressedBox) forceCheckNext = true;
 				_pressedBox = false;
 			}
-			if(wasDragging && broadcastBoxEvents) PsychUIEventHandler.event(DROP_EVENT, this);
 		}
 
 		for (tab in tabs)
@@ -104,7 +98,6 @@ class PsychUIBox extends FlxSpriteGroup
 			tab.text.scrollFactor.set(scrollFactor.x, scrollFactor.y);
 		}
 
-		var _ignoreTabUpdate:Bool = false;
 		if(forceCheckNext || FlxG.mouse.justMoved || FlxG.mouse.justPressed || FlxG.mouse.justReleased)
 		{
 			forceCheckNext = false;
@@ -124,12 +117,10 @@ class PsychUIBox extends FlxSpriteGroup
 						_draggingPos = FlxPoint.weak(x, y);
 						_draggingPoint = FlxG.mouse.getPositionInCameraView(camera);
 						_draggingBox = true;
-						if(broadcastBoxEvents) PsychUIEventHandler.event(DRAG_EVENT, this);
 					}
 					
 					if(FlxG.mouse.justReleased && canMinimize && _lastClick < 0.15 && selectedTab == tab && _lastTab == selectedTab)
 					{
-						_ignoreTabUpdate = true;
 						isMinimized = !isMinimized;
 						_lastClick = 0;
 						//trace('do minimize: $isMinimized');
@@ -137,15 +128,11 @@ class PsychUIBox extends FlxSpriteGroup
 					
 					if(FlxG.mouse.justPressed)
 					{
-						if(selectedTab != tab)
-						{
-							isMinimized = false;
-							_ignoreTabUpdate = true;
-						}
+						if(selectedTab != tab) isMinimized = false;
 						_lastTab = selectedTab;
 						selectedTab = tab;
 						_lastClick = 0;
-						if(broadcastBoxEvents) PsychUIEventHandler.event(CLICK_EVENT, this);
+						if(broadcastBoxEvent) PsychUIEventHandler.event(CLICK_EVENT, this);
 					}
 					else if(selectedTab != tab) continue;
 				}
@@ -157,20 +144,8 @@ class PsychUIBox extends FlxSpriteGroup
 			}
 		}
 
-		if(_ignoreTabUpdate)
-		{
-			if(broadcastBoxEvents)
-				PsychUIEventHandler.event(MINIMIZE_EVENT, this);
-		}
-		else if(selectedTab != null && !isMinimized)
+		if(selectedTab != null && !isMinimized)
 			selectedTab.updateMenu(this, elapsed);
-
-		if(minimizeOnFocusLost && FlxG.mouse.justPressed && !isMinimized && !FlxG.mouse.overlaps(bg, camera))
-		{
-			isMinimized = true;
-			if(broadcastBoxEvents)
-				PsychUIEventHandler.event(MINIMIZE_EVENT, this);
-		}
 	}
 
 	override function set_cameras(v:Array<FlxCamera>)
@@ -296,7 +271,6 @@ class PsychUIBox extends FlxSpriteGroup
 		{
 			bg.scale.y = tabHeight + 20;
 			bg.updateHitbox();
-			selectedTab = null;
 		}
 		return (isMinimized = v);
 	}

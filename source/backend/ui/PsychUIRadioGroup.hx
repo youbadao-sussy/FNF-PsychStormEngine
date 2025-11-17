@@ -131,7 +131,7 @@ class PsychUIRadioGroup extends FlxSpriteGroup
 		var lastScroll:Int = curScroll;
 		if(maxItems > 0 && labels.length > maxItems)
 		{
-			curScroll = Std.int(FlxMath.bound(v, 0, labels.length - maxItems));
+			curScroll = Std.int(Math.max(0, Math.min(labels.length - maxItems, v)));
 			if(arrowUp != null && arrowUp.exists) 
 			{
 				arrowUp.visible = arrowUp.active = true;
@@ -174,8 +174,7 @@ class PsychUIRadioGroup extends FlxSpriteGroup
 
 	function set_checked(v:Int)
 	{
-		checked = Std.int(FlxMath.bound(v, -1, Math.min(labels.length-1, radios.length-1)));
-		@:bypassAccessor checkedRadio = null;
+		checked = Std.int(Math.max(-1, Math.min(radios.length-1, v)));
 		for (num => radio in radios)
 		{
 			radio.checked = (num == checked);
@@ -188,7 +187,6 @@ class PsychUIRadioGroup extends FlxSpriteGroup
 	{
 		labels = v;
 		updateRadioItems();
-		set_checked(checked);
 		set_curScroll(curScroll);
 		return labels;
 	}
@@ -196,7 +194,6 @@ class PsychUIRadioGroup extends FlxSpriteGroup
 	function set_checkedRadio(v:PsychUIRadioItem)
 	{
 		checkedRadio = null;
-		@:bypassAccessor checked = -1;
 		for (num => radio in radios)
 		{
 			radio.checked = (v == radio);
