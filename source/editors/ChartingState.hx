@@ -22,13 +22,13 @@ import backend.Song;
 import backend.Section;
 import backend.StageData;
 
-import objects.Note;
-import objects.StrumNote;
-import objects.NoteSplash;
-import objects.HealthIcon;
-import objects.AttachedSprite;
-import objects.Character;
-import substates.Prompt;
+import Note;
+import StrumNote;
+import NoteSplash;
+import HealthIcon;
+import AttachedSprite;
+import Character;
+import Prompt;
 
 
 #if sys
