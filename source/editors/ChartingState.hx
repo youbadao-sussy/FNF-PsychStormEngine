@@ -1,4 +1,4 @@
-package states.editors;
+package editors;
 
 import flash.geom.Rectangle;
 import haxe.Json;
