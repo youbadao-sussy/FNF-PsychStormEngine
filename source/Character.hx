@@ -450,5 +450,4 @@ class Character extends FlxSprite
 		atlas = FlxDestroyUtil.destroy(atlas);
 		super.destroy();
 	}
-	#end
 }
