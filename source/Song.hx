@@ -26,6 +26,14 @@ typedef SwagSong =
 	var gfVersion:String;
 	var stage:String;
 
+	
+	@:optional var gameOverChar:String;
+	@:optional var gameOverSound:String;
+	@:optional var gameOverLoop:String;
+	@:optional var gameOverEnd:String;
+	
+	@:optional var disableNoteRGB:Bool;
+
 	var arrowSkin:String;
 	var splashSkin:String;
 	var validScore:Bool;

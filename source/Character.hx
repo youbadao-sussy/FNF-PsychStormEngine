@@ -33,6 +33,7 @@ typedef CharacterFile = {
 	var flip_x:Bool;
 	var no_antialiasing:Bool;
 	var healthbar_colors:Array<Int>;
+	var vocals_file:String;
 }
 
 typedef AnimArray = {
