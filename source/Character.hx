@@ -169,6 +169,8 @@ class Character extends FlxSprite
 
 				*/
 
+				#end
+
 				switch (spriteType){
 					
 					case "packer":
