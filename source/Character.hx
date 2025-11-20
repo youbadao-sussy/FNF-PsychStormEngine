@@ -147,6 +147,8 @@ class Character extends FlxSprite
 				
 				//var modTextureToFind:String = Paths.modFolders("images/"+json.image);
 				//var textureToFind:String = Paths.getPath('images/' + json.image, new AssetType();
+
+				/*
 				
 				if (FileSystem.exists(modAnimToFind) || FileSystem.exists(animToFind) || Assets.exists(animToFind))
 				#else
@@ -164,6 +166,8 @@ class Character extends FlxSprite
 				
 				}
 				#end
+
+				*/
 
 				switch (spriteType){
 					
