@@ -14,7 +14,7 @@ jobs:
       - name: Setup Haxe
         uses: krdlab/setup-haxe@38fd78cc3a7960b281cf4a33a63a9c1543ac4598
         with:
-          haxe-version: 4.2.5
+          haxe-version: 4.3.4
 
       - name: Build Haxe project with build number
         run: echo "${{github.run_number}}" > PrjVer # haxe build.hxml -D build_number=${{ github.run_number }}
