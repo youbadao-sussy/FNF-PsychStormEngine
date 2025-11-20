@@ -153,8 +153,17 @@ class Character extends FlxSprite
 				if (Assets.exists(Paths.getPath('images/' + json.image + '/Animation.json', TEXT)))
 				#end
 				{
-					spriteType = "texture";
+					spriteType = "atlas";
+					isAnimateAtlas = true;
 				}
+
+				#if flxanimate
+				var animToFind:String = Paths.getPath('images/' + json.image + '/Animation.json', TEXT);
+				if (#if MODS_ALLOWED NativeFileSystem.exists(animToFind) || #end Assets.exists(animToFind))
+				{
+				
+				}
+				#end
 
 				switch (spriteType){
 					
@@ -167,6 +176,22 @@ class Character extends FlxSprite
 					
 					case "texture":
 						frames = AtlasFrameMaker.construct(json.image);
+
+						/*
+					case "atlas":
+						atlas = new FlxAnimate();
+						atlas.showPivot = false;
+						try
+						{
+							Paths.loadAnimateAtlas(atlas, json.image);
+						}
+						catch (e:haxe.Exception)
+						{
+								FlxG.log.warn('Could not load atlas ${json.image}: $e');
+							trace(e.stack);
+						}
+						
+						*/
 				}
 				imageFile = json.image;
 
@@ -419,4 +444,11 @@ class Character extends FlxSprite
 	{
 		animation.addByPrefix(name, anim, 24, false);
 	}
+	
+	public override function destroy()
+	{
+		atlas = FlxDestroyUtil.destroy(atlas);
+		super.destroy();
+	}
+	#end
 }
