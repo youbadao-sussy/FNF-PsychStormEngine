@@ -210,7 +210,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		vortex = FlxG.save.data.chart_vortex;
 		ignoreWarnings = FlxG.save.data.ignoreWarnings;
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		bg.antialiasing = ClientPrefs.data.antialiasing;
+		bg.antialiasing = FlxG.save.data.globalAntialiasing;
 		bg.scrollFactor.set();
 		bg.color = 0xFF222222;
 		add(bg);
@@ -222,7 +222,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		add(waveformSprite);
 
 		var eventIcon:FlxSprite = new FlxSprite(-GRID_SIZE - 5, -90).loadGraphic(Paths.image('eventArrow'));
-		eventIcon.antialiasing = ClientPrefs.data.antialiasing;
+		eventIcon.antialiasing = FlxG.save.data.globalAntialiasing;
 		leftIcon = new HealthIcon('bf');
 		rightIcon = new HealthIcon('dad');
 		eventIcon.scrollFactor.set(1, 1);

@@ -141,6 +141,11 @@ class Paths
 		return getPreloadPath(file);
 	}
 
+	
+	inline public static function getSharedPath(file:String = '')
+		return 'assets/shared/$file';
+
+
 	static public function getLibraryPath(file:String, library = "preload")
 	{
 		return if (library == "preload" || library == "default") getPreloadPath(file); else getLibraryPathForce(file, library);
