@@ -195,6 +195,8 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 				gfVersion: 'gf',
 				speed: 1,
 				stage: 'stage'
+				artist: 'Kawai Sprite',
+				charter: 'Unknown'
 			};
 			addSection();
 			PlayState.SONG = _song;
@@ -404,7 +406,18 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 	#end
 	function addSongUI():Void
 	{
+		var objX = 10;
+		var objY = 10;
+
 		UI_songTitle = new PsychUIInputText(10, 10, 70, _song.song, 8);
+
+
+		artistInputText = new FlxUIInputText(objX + 100, objY + 58, 70, _song.artist, 8);
+		//blockPressWhileTypingOn.push(artistInputText);
+
+		charterInputText = new FlxUIInputText(objX + 100, objY + 88, 70, _song.charter, 8);
+		//blockPressWhileTypingOn.push(charterInputText);
+
 
 		var check_voices = new PsychUICheckBox(10, 25, "Has voice track", 100);
 		check_voices.checked = _song.needsVoices;
