@@ -1,5 +1,8 @@
 import Paths;
 
+#if DISCORD_ALLOWED
+import Discord.DiscordClient;
+#end
 
 #if sys
 import sys.*;
