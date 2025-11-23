@@ -196,8 +196,8 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 				speed: 1,
 				stage: 'stage'
 				validScore: false,
-				arrowSkin: '',
-				splashSkin: 'noteSplashes',//idk it would crash if i didn't
+				//arrowSkin: '',
+				//splashSkin: 'noteSplashes',//idk it would crash if i didn't
 				artist: 'Kawai Sprite',
 				charter: 'Unknown'
 			};
