@@ -1,5 +1,5 @@
 package editors;
-
+/*
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -68,6 +68,48 @@ import sys.io.File;
 
 @:access(flixel.system.FlxSound._sound)
 @:access(openfl.media.Sound.__buffer)
+*/
+
+package editors;
+
+import flash.geom.Rectangle;
+import haxe.Json;
+import haxe.format.JsonParser;
+import haxe.io.Bytes;
+
+import flixel.FlxObject;
+import flixel.addons.display.FlxGridOverlay;
+import flixel.group.FlxGroup;
+
+import flixel.util.FlxSort;
+import lime.media.AudioBuffer;
+import lime.utils.Assets;
+import openfl.events.Event;
+import openfl.events.IOErrorEvent;
+import openfl.media.Sound;
+import openfl.net.FileReference;
+import openfl.utils.Assets as OpenFlAssets;
+
+import Song;
+import Section;
+import StageData;
+
+import Note;
+import StrumNote;
+import NoteSplash;
+import HealthIcon;
+import AttachedSprite;
+import Character;
+import Prompt;
+
+
+#if sys
+import flash.media.Sound;
+#end
+
+@:access(flixel.sound.FlxSound._sound)
+@:access(openfl.media.Sound.__buffer)
+
 
 class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychUIEvent
 {
