@@ -70,8 +70,6 @@ import sys.io.File;
 @:access(openfl.media.Sound.__buffer)
 */
 
-package editors;
-
 import flash.geom.Rectangle;
 import haxe.Json;
 import haxe.format.JsonParser;
