@@ -749,7 +749,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		tab_group_song.add(player1DropDown);
 		tab_group_song.add(stageDropDown);
 
-		UI_box.addGroup(tab_group_song);
+		//UI_box.addGroup(tab_group_song);
 
 		FlxG.camera.follow(camPos);
 	}
@@ -1021,7 +1021,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		tab_group_section.add(duetButton);
 		tab_group_section.add(mirrorButton);
 
-		UI_box.addGroup(tab_group_section);
+		//UI_box.addGroup(tab_group_section);
 	}
 
 	var stepperSusLength:PsychUINumericStepper;
@@ -1102,7 +1102,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		tab_group_note.add(strumTimeInputText);
 		tab_group_note.add(noteTypeDropDown);
 
-		UI_box.addGroup(tab_group_note);
+		//UI_box.addGroup(tab_group_note);
 	}
 
 	var eventDropDown:PsychUIDropDownMenu;
@@ -1255,7 +1255,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		tab_group_event.add(value2InputText);
 		tab_group_event.add(eventDropDown);
 
-		UI_box.addGroup(tab_group_event);
+		//UI_box.addGroup(tab_group_event);
 	}
 
 	function changeEventSelected(change:Int = 0)
@@ -1453,7 +1453,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		tab_group_chart.add(check_warnings);
 		tab_group_chart.add(playSoundBf);
 		tab_group_chart.add(playSoundDad);
-		UI_box.addGroup(tab_group_chart);
+		//UI_box.addGroup(tab_group_chart);
 	}
 
 	function loadSong():Void
@@ -1550,9 +1550,9 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 					vocals.volume = nums.value;
 					if(check_mute_vocals.checked) vocals.volume = 0;
 
-				case 'voices_opp_volume':
-					opponentVocals.volume = nums.value;
-					if(check_mute_vocals_opponent.checked) opponentVocals.volume = 0;
+				// case 'voices_opp_volume':
+				// 	opponentVocals.volume = nums.value;
+				// 	if(check_mute_vocals_opponent.checked) opponentVocals.volume = 0;
 			}
 		}
 		else if(id == PsychUIInputText.CHANGE_EVENT && (sender is PsychUIInputText)) {
@@ -1843,7 +1843,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 
 		var blockInput:Bool = false;
 		for (inputText in blockPressWhileTypingOn) {
-			if(inputText.hasFocus) {
+			if(inputText.focusOn) {
 				FlxG.sound.muteKeys = [];
 				FlxG.sound.volumeDownKeys = [];
 				FlxG.sound.volumeUpKeys = [];
@@ -1857,7 +1857,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 				@:privateAccess
 				var leText:Dynamic = stepper.text_field;
 				var leText:PsychUIInputText = leText;
-				if(leText.hasFocus) {
+				if(leText.focusOn) {
 					FlxG.sound.muteKeys = [];
 					FlxG.sound.volumeDownKeys = [];
 					FlxG.sound.volumeUpKeys = [];
@@ -2173,8 +2173,8 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 			}
 		} else if (FlxG.keys.justPressed.ENTER) {
 			for (i in 0...blockPressWhileTypingOn.length) {
-				if(blockPressWhileTypingOn[i].hasFocus) {
-					blockPressWhileTypingOn[i].hasFocus = false;
+				if(blockPressWhileTypingOn[i].focusOn) {
+					blockPressWhileTypingOn[i].focusOn = false;
 				}
 			}
 		}
@@ -2777,7 +2777,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 				}
 			} else {
 				eventDropDown.selectedLabel = curSelectedNote[1][curEventSelected][0];
-				var selected:Int = Std.parseInt(eventDropDown.selectedId);
+				var selected:Int = Std.parseInt(eventDropDown.selectedIndex);
 				if(selected > 0 && selected < eventStuff.length) {
 					descText.text = eventStuff[selected][1];
 				}
@@ -3106,7 +3106,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		}
 		else
 		{
-			var event = eventStuff[Std.parseInt(eventDropDown.selectedId)][0];
+			var event = eventStuff[Std.parseInt(eventDropDown.selectedIndex)][0];
 			var text1 = value1InputText.text;
 			var text2 = value2InputText.text;
 			_song.events.push([noteStrum, [[event, text1, text2]]]);
